@@ -370,11 +370,11 @@ public class Query {
             PreparedStatement preparedStatement = conn.prepareStatement(query3);
 
             preparedStatement.setInt(1, transaccion.getId());
-            preparedStatement.setDate(2, transaccion.getFechaCompra());
-            preparedStatement.setDouble(3, transaccion.getMontoTotal());
+            preparedStatement.setDate(2, transaccion.getFecha_compra());
+            preparedStatement.setDouble(3, transaccion.getMonto_total());
             preparedStatement.setString(4, transaccion.getDescripcion());
-            preparedStatement.setInt(5,transaccion.getIdTarjeta());
-            preparedStatement.setInt(6,transaccion.getIdCliente());
+            preparedStatement.setInt(5,transaccion.getId_tarjeta());
+            preparedStatement.setInt(6,transaccion.getId_cliente());
 
             try{
                 int results = preparedStatement.executeUpdate();
@@ -458,11 +458,11 @@ public class Query {
 
             PreparedStatement ps = conn.prepareStatement(insertSQL2);
 
-            ps.setDate(1,transaccion.getFechaCompra());
-            ps.setDouble(2,transaccion.getMontoTotal());
+            ps.setDate(1,transaccion.getFecha_compra());
+            ps.setDouble(2,transaccion.getMonto_total());
             ps.setString(3,transaccion.getDescripcion());
-            ps.setInt(4,transaccion.getIdTarjeta());
-            ps.setInt(5,transaccion.getIdCliente());
+            ps.setInt(4,transaccion.getId_tarjeta());
+            ps.setInt(5,transaccion.getId_cliente());
 
             try{
                 int results = ps.executeUpdate();
