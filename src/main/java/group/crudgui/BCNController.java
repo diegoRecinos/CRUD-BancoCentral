@@ -98,6 +98,8 @@ public class BCNController implements Initializable {
     public TableColumn<Cliente, Integer> colClienteID;
     @FXML
     public TableView<Cliente> tableViewCliente;
+    public TextField fieldTarjetaID;
+    public TextField fieldTransaccionID;
     @FXML
     private Label welcomeText;
 //    //private ComboBox<Facilitador> facilitador;
@@ -147,20 +149,23 @@ public class BCNController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        showStudents();
+//        showStudents();
+        showClientes();
+        showTarjetas();
+        showTransacciones();
     }
 
-    @FXML
-    private void showStudents()
-    {
-        Query query = new Query();
-        ObservableList<Student> list = query.getStudentList();
-        columnID.setCellValueFactory(new PropertyValueFactory<>("id"));
-        colFirstName.setCellValueFactory(new PropertyValueFactory<>("firstName"));
-        colMiddleName.setCellValueFactory(new PropertyValueFactory<>("middleName"));
-        colLastName.setCellValueFactory(new PropertyValueFactory<>("lastName"));
-        tableView.setItems(list);
-    }
+//    @FXML
+//    private void showStudents()
+//    {
+//        Query query = new Query();
+//        ObservableList<Student> list = query.getStudentList();
+//        columnID.setCellValueFactory(new PropertyValueFactory<>("id"));
+//        colFirstName.setCellValueFactory(new PropertyValueFactory<>("firstName"));
+//        colMiddleName.setCellValueFactory(new PropertyValueFactory<>("middleName"));
+//        colLastName.setCellValueFactory(new PropertyValueFactory<>("lastName"));
+//        tableView.setItems(list);
+//    }
     
     @FXML
     private void showClientes()
@@ -209,48 +214,76 @@ public class BCNController implements Initializable {
     @FXML
     private void addStudentFunction()
     {
-        Student student = new Student(Integer.parseInt(fieldStudentID.getText()),fieldFirstName.getText(), fieldMiddleName.getText(),fieldLastName.getText());
-        Query query = new Query();
-        query.addStudent(student);
-        showStudents();
+//        Student student = new Student(Integer.parseInt(fieldStudentID.getText()),fieldFirstName.getText(), fieldMiddleName.getText(),fieldLastName.getText());
+//        Query query = new Query();
+//        query.addStudent(student);
+//        showStudents();
 
     }
     @FXML
     private void deleteStudent()
     {
-        int studentId = Integer.parseInt(fieldStudentID.getText());
-        Query query = new Query();
-        query.deleteStudent(studentId);
-        showStudents();
+//        int studentId = Integer.parseInt(fieldStudentID.getText());
+//        Query query = new Query();
+//        query.deleteStudent(studentId);
+//        showStudents();
 
     }
 
     @FXML
     private void updateStudentFunction()
     {
-        Student student = new Student(Integer.parseInt(fieldStudentID.getText()),fieldFirstName.getText(), fieldMiddleName.getText(),fieldLastName.getText());
-        Query query = new Query();
-        query.updateStudent(student);
-        showStudents();
+//        Student student = new Student(Integer.parseInt(fieldStudentID.getText()),fieldFirstName.getText(), fieldMiddleName.getText(),fieldLastName.getText());
+//        Query query = new Query();
+//        query.updateStudent(student);
+//        showStudents();
     }
 
     @FXML
     private void mouseClicked(MouseEvent e)
     {
-        try {
-            Student student = (Student) tableView.getSelectionModel().getSelectedItem();
-            student = new Student(student.getId(), student.getFirstName(), student.getMiddleName(), student.getLastName());
-            this.student = student;
-            fieldFirstName.setText(student.getFirstName());
-            fieldMiddleName.setText(student.getMiddleName());
-            fieldLastName.setText(student.getLastName());
-            fieldLastName.setText(student.getLastName());
-            fieldStudentID.setText (String.valueOf (student.getId()) );
+//        try {
+//            Student student = (Student) tableView.getSelectionModel().getSelectedItem();
+//            student = new Student(student.getId(), student.getFirstName(), student.getMiddleName(), student.getLastName());
+//            this.student = student;
+//            fieldFirstName.setText(student.getFirstName());
+//            fieldMiddleName.setText(student.getMiddleName());
+//            fieldLastName.setText(student.getLastName());
+//            fieldLastName.setText(student.getLastName());
+//            fieldStudentID.setText (String.valueOf (student.getId()) );
+//
+//        } catch (Exception ex) {
+//            ex.printStackTrace();
+//        }
 
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
+    }
 
+    @FXML
+    private void addClienteFunction()
+    {
+        Cliente cliente = new Cliente(Integer.parseInt(fieldClienteID.getText()),fieldClienteName.getText(), fieldClienteAddress.getText(),fieldClienteTel.getText());
+        Query query = new Query();
+        query.addCliente(cliente);
+        showClientes();
+
+    }
+    @FXML
+    private void deleteCliente()
+    {
+//        int studentId = Integer.parseInt(fieldStudentID.getText());
+//        Query query = new Query();
+//        query.deleteStudent(studentId);
+//        showStudents();
+
+    }
+
+    @FXML
+    private void updateClienteFunction()
+    {
+//        Student student = new Student(Integer.parseInt(fieldStudentID.getText()),fieldFirstName.getText(), fieldMiddleName.getText(),fieldLastName.getText());
+//        Query query = new Query();
+//        query.updateStudent(student);
+//        showStudents();
     }
 
 
