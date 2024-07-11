@@ -13,6 +13,9 @@ import java.util.ResourceBundle;
 public class BCNController implements Initializable {
     @FXML
     private Label welcomeText;
+//    //private ComboBox<Facilitador> facilitador;
+//    @FXML
+//    private DatePicker dpFechaExp;
 
     @FXML
     protected void onHelloButtonClick() {
@@ -118,6 +121,7 @@ public class BCNController implements Initializable {
         }
 
     }
+
 
 
 }
