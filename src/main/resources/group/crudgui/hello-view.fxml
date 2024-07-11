@@ -2,21 +2,22 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="676.0" prefWidth="982.0" spacing="20.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="group.crudgui.BCNController">
+<VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="676.0" prefWidth="982.0" spacing="20.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="group.crudgui.BCNController">
     <AnchorPane prefHeight="748.0" prefWidth="814.0">
-        <TableView fx:id="tableViewCliente" layoutX="9.0" layoutY="284.0" prefHeight="114.0" prefWidth="712.0">
+        <TableView fx:id="tableViewCliente" layoutX="9.0" layoutY="284.0" onMouseClicked="#mouseClickedCliente" prefHeight="114.0" prefWidth="712.0">
             <columns>
                 <TableColumn fx:id="colClienteID" prefWidth="32.79998779296875" text="id" />
                 <TableColumn fx:id="colClienteNombre" prefWidth="175.20000839233398" text="nombre" />
@@ -24,7 +25,7 @@
                 <TableColumn fx:id="colClienteTelefono" prefWidth="287.199951171875" text="telefono" />
             </columns>
         </TableView>
-      <VBox layoutX="58.0" layoutY="32.0" prefHeight="204.0" prefWidth="170.0">
+      <VBox layoutX="53.0" layoutY="32.0" prefHeight="142.0" prefWidth="170.0">
          <children>
                <TextField fx:id="fieldClienteName" />
                <TextField fx:id="fieldClienteAddress" prefHeight="26.0" prefWidth="307.0">
@@ -33,11 +34,6 @@
                </VBox.margin>
             </TextField>
                <TextField fx:id="fieldClienteTel">
-               <VBox.margin>
-                  <Insets top="8.0" />
-               </VBox.margin>
-            </TextField>
-            <TextField fx:id="fieldClienteID">
                <VBox.margin>
                   <Insets top="8.0" />
                </VBox.margin>
@@ -51,7 +47,7 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
       </GridPane>
-      <VBox layoutX="10.0" layoutY="23.0" prefHeight="102.0" prefWidth="44.0">
+      <VBox layoutX="7.0" layoutY="23.0" prefHeight="102.0" prefWidth="44.0">
          <children>
             <Label text="Name">
                <VBox.margin>
@@ -68,17 +64,21 @@
                   <Insets top="15.0" />
                </VBox.margin>
             </Label>
-            <Label text="ID">
-               <VBox.margin>
-                  <Insets top="15.0" />
-               </VBox.margin>
-            </Label>
          </children>
       </VBox>
       <Label layoutX="122.0" layoutY="14.0" text="Cliente" />
       <VBox layoutX="293.0" layoutY="30.0" prefHeight="130.0" prefWidth="162.0">
          <children>
-            <ComboBox fx:id="comboBxTarjetaFacilitador" prefHeight="26.0" prefWidth="162.0" />
+            <HBox prefHeight="26.0" prefWidth="162.0">
+               <children>
+                  <RadioButton fx:id="rdbtnDebito" mnemonicParsing="false" prefHeight="18.0" prefWidth="96.0" text="Debito">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="TipoTarjeta" />
+                     </toggleGroup>
+                  </RadioButton>
+                  <RadioButton fx:id="rdbtnCredito" mnemonicParsing="false" prefHeight="18.0" prefWidth="72.0" text="Credito" toggleGroup="$TipoTarjeta" />
+               </children>
+            </HBox>
             <DatePicker fx:id="dtpickerTarjetaExpire">
                <VBox.margin>
                   <Insets top="8.0" />
@@ -94,12 +94,11 @@
                   <Insets top="8.0" />
                </VBox.margin>
             </TextField>
-            <ComboBox prefHeight="26.0" prefWidth="166.0" />
          </children>
       </VBox>
-      <VBox layoutX="231.0" layoutY="22.0" prefHeight="131.0" prefWidth="67.0">
+      <VBox layoutX="231.0" layoutY="18.0" prefHeight="131.0" prefWidth="67.0">
          <children>
-            <Label text="Faciltador">
+            <Label text="Tipo">
                <VBox.margin>
                   <Insets top="15.0" />
                </VBox.margin>
@@ -116,12 +115,12 @@
             </Label>
             <Label text="ID_Cliente">
                <VBox.margin>
-                  <Insets top="15.0" />
+                  <Insets top="18.0" />
                </VBox.margin>
             </Label>
-            <Label text="Tipo">
+            <Label text="Facilitador">
                <VBox.margin>
-                  <Insets top="8.0" />
+                  <Insets top="20.0" />
                </VBox.margin>
             </Label>
          </children>
@@ -137,7 +136,7 @@
             <TableColumn fx:id="colTransaccionIDCliente" prefWidth="132.800048828125" text="id_cliente" />
          </columns>
       </TableView>
-        <VBox layoutX="549.0" layoutY="31.0" prefHeight="157.0" prefWidth="162.0">
+        <VBox layoutX="544.0" layoutY="31.0" prefHeight="157.0" prefWidth="162.0">
             <TextField fx:id="fieldTransacionDesc" prefHeight="46.0" prefWidth="162.0" />
             <DatePicker fx:id="dtpickerTransaccionDate">
                 <VBox.margin>
@@ -155,8 +154,8 @@
                 </VBox.margin>
             </TextField>
         </VBox>
-      <Label layoutX="601.0" layoutY="13.0" text="Transaccion" />
-      <VBox layoutX="476.0" layoutY="24.0" prefHeight="164.0" prefWidth="67.0">
+      <Label layoutX="592.0" layoutY="10.0" text="Transaccion" />
+      <VBox layoutX="471.0" layoutY="24.0" prefHeight="164.0" prefWidth="67.0">
          <children>
             <Label text="Descripcion.">
                <VBox.margin>
@@ -193,25 +192,43 @@
             <TableColumn fx:id="colTarjetaIDCliente" prefWidth="133.60001220703123" text="id_cliente" />
          </columns>
       </TableView>
-      <TextField fx:id="fieldTarjetaID" layoutX="293.0" layoutY="189.0" prefHeight="26.0" prefWidth="162.0" />
-      <TextField fx:id="fieldTransaccionID" layoutX="549.0" layoutY="190.0" prefHeight="26.0" prefWidth="162.0" />
-      <Label layoutX="234.0" layoutY="194.0" text="ID" />
-      <Label layoutX="476.0" layoutY="194.0" text="ID" />
-      <HBox layoutX="16.0" layoutY="228.0" prefHeight="56.0" prefWidth="712.0">
+      <TextField fx:id="fieldTarjetaID" layoutX="293.0" layoutY="215.0" prefHeight="26.0" prefWidth="162.0" />
+      <TextField fx:id="fieldTransaccionID" layoutX="547.0" layoutY="213.0" prefHeight="26.0" prefWidth="162.0" />
+      <Label layoutX="234.0" layoutY="217.0" text="ID" />
+      <Label layoutX="476.0" layoutY="218.0" text="ID" />
+      <HBox layoutX="10.0" layoutY="245.0" prefHeight="46.0" prefWidth="712.0">
          <children>
-            <HBox prefHeight="56.0" prefWidth="238.0">
+            <HBox prefHeight="46.0" prefWidth="238.0">
                <children>
-                    <Button fx:id="btnClienteSave" mnemonicParsing="false" prefHeight="26.0" prefWidth="50.0" text="Create" />
-                  <Button fx:id="btnClienteRead" mnemonicParsing="false" text="ReadDB" />
-                    <Button fx:id="btnClienteUpdate" mnemonicParsing="false" text="Update" />
-                    <Button fx:id="btnClienteDelete" mnemonicParsing="false" text="Delete" />
+                    <Button fx:id="btnClienteSave" mnemonicParsing="false" onAction="#addClienteFunction" prefHeight="26.0" prefWidth="50.0" text="Save">
+                     <HBox.margin>
+                        <Insets right="5.0" />
+                     </HBox.margin></Button>
+                  <Button fx:id="btnClienteRead" mnemonicParsing="false" onAction="#showClientes" text="Read">
+                     <HBox.margin>
+                        <Insets right="5.0" />
+                     </HBox.margin></Button>
+                    <Button fx:id="btnClienteUpdate" mnemonicParsing="false" onAction="#updateClienteFunction" text="Update">
+                     <HBox.margin>
+                        <Insets right="5.0" />
+                     </HBox.margin></Button>
+                    <Button fx:id="btnClienteDelete" mnemonicParsing="false" onAction="#deleteCliente" prefHeight="26.0" prefWidth="58.0" text="Delete" />
                </children>
             </HBox>
-            <HBox prefHeight="56.0" prefWidth="248.0">
+            <HBox prefHeight="46.0" prefWidth="257.0">
                <children>
-                  <Button fx:id="btnTarjetaSave" mnemonicParsing="false" prefHeight="26.0" prefWidth="50.0" text="Create" />
-                  <Button fx:id="btnTarjetaRead" mnemonicParsing="false" text="ReadDB" />
-                  <Button fx:id="btnTarjetaUpdate" mnemonicParsing="false" text="Update" />
+                  <Button fx:id="btnTarjetaSave" mnemonicParsing="false" prefHeight="26.0" prefWidth="50.0" text="Save">
+                     <HBox.margin>
+                        <Insets right="5.0" />
+                     </HBox.margin></Button>
+                  <Button fx:id="btnTarjetaRead" mnemonicParsing="false" text="Read">
+                     <HBox.margin>
+                        <Insets right="5.0" />
+                     </HBox.margin></Button>
+                  <Button fx:id="btnTarjetaUpdate" mnemonicParsing="false" text="Update">
+                     <HBox.margin>
+                        <Insets right="5.0" />
+                     </HBox.margin></Button>
                   <Button fx:id="btnTarjetaDelete" mnemonicParsing="false" text="Delete" />
                </children>
                <opaqueInsets>
@@ -221,11 +238,20 @@
                   <Insets left="15.0" />
                </padding>
             </HBox>
-            <HBox prefHeight="62.0" prefWidth="242.0">
+            <HBox prefHeight="46.0" prefWidth="246.0">
                <children>
-                  <Button fx:id="btnTransaccionSave" mnemonicParsing="false" prefHeight="26.0" prefWidth="50.0" text="Create" />
-                  <Button fx:id="btnTransaccionRead" mnemonicParsing="false" text="ReadDB" />
-                  <Button fx:id="btnTransaccionUpdate" mnemonicParsing="false" text="Update" />
+                  <Button fx:id="btnTransaccionSave" mnemonicParsing="false" prefHeight="26.0" prefWidth="50.0" text="Save">
+                     <HBox.margin>
+                        <Insets right="5.0" />
+                     </HBox.margin></Button>
+                  <Button fx:id="btnTransaccionRead" mnemonicParsing="false" text="Read">
+                     <HBox.margin>
+                        <Insets right="5.0" />
+                     </HBox.margin></Button>
+                  <Button fx:id="btnTransaccionUpdate" mnemonicParsing="false" text="Update">
+                     <HBox.margin>
+                        <Insets right="5.0" />
+                     </HBox.margin></Button>
                   <Button fx:id="btnTransaccionDelete" mnemonicParsing="false" text="Delete" />
                </children>
                <padding>
@@ -234,5 +260,18 @@
             </HBox>
          </children>
       </HBox>
+      <VBox layoutX="296.0" layoutY="158.0" prefHeight="53.0" prefWidth="122.0">
+         <children>
+            <RadioButton fx:id="rdbtnVisa" mnemonicParsing="false" prefHeight="18.0" prefWidth="54.0" text="Visa">
+               <toggleGroup>
+                  <ToggleGroup fx:id="Facilitador" />
+               </toggleGroup>
+            </RadioButton>
+            <RadioButton fx:id="rdbtnMasterCard" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="18.0" prefWidth="87.0" text="MasterCard" toggleGroup="$Facilitador" />
+            <RadioButton fx:id="rdbtnAmericanExpress" mnemonicParsing="false" prefHeight="18.0" prefWidth="117.0" text="American Express" toggleGroup="$Facilitador" />
+         </children>
+      </VBox>
+      <TextField fx:id="fieldClienteID" layoutX="57.0" layoutY="213.0" prefHeight="26.0" prefWidth="162.0" />
+      <Label layoutX="11.0" layoutY="218.0" text="ID" />
     </AnchorPane>
 </VBox>

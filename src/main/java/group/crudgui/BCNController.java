@@ -100,6 +100,13 @@ public class BCNController implements Initializable {
     public TableView<Cliente> tableViewCliente;
     public TextField fieldTarjetaID;
     public TextField fieldTransaccionID;
+    public ToggleGroup Facilitador;
+    public ToggleGroup TipoTarjeta;
+    public RadioButton rdbtnDebito;
+    public RadioButton rdbtnCredito;
+    public RadioButton rdbtnAmericanExpress;
+    public RadioButton rdbtnMasterCard;
+    public RadioButton rdbtnVisa;
     @FXML
     private Label welcomeText;
 //    //private ComboBox<Facilitador> facilitador;
@@ -131,7 +138,10 @@ public class BCNController implements Initializable {
     @FXML
     public Button btnDelete;
 
+    public Cliente cliente;
     public Student student;
+
+
     @FXML
     private TableView<Student> tableView;
 
@@ -270,21 +280,67 @@ public class BCNController implements Initializable {
     @FXML
     private void deleteCliente()
     {
-//        int studentId = Integer.parseInt(fieldStudentID.getText());
-//        Query query = new Query();
-//        query.deleteStudent(studentId);
-//        showStudents();
+        int clienteId = Integer.parseInt(fieldClienteID.getText());
+        Query query = new Query();
+        query.deleteCliente(clienteId);
+        showClientes();
 
     }
 
     @FXML
     private void updateClienteFunction()
     {
-//        Student student = new Student(Integer.parseInt(fieldStudentID.getText()),fieldFirstName.getText(), fieldMiddleName.getText(),fieldLastName.getText());
-//        Query query = new Query();
-//        query.updateStudent(student);
-//        showStudents();
+        Cliente cliente = new Cliente(Integer.parseInt(fieldClienteID.getText()),fieldClienteName.getText(), fieldClienteAddress.getText(),fieldClienteTel.getText());
+        Query query = new Query();
+        query.updateCliente(cliente);
+        showClientes();
     }
+
+    @FXML
+    private void mouseClickedCliente(MouseEvent e)
+    {
+        try {
+            Cliente cliente = (Cliente) tableViewCliente.getSelectionModel().getSelectedItem();
+            cliente = new Cliente(cliente.getId(), cliente.getNombre(), cliente.getDireccion(), cliente.getTelefono());
+            this.cliente = cliente;
+            fieldClienteName.setText(cliente.getNombre());
+            fieldClienteAddress.setText(cliente.getDireccion());
+            fieldClienteTel.setText(cliente.getTelefono());
+            fieldClienteID.setText (String.valueOf (cliente.getId()) );
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
+    }
+
+//    @FXML
+//    private void addTarjetaFunction()
+//    {
+//        Tarjeta tarjeta = new Tarjeta(Integer.parseInt(fieldTarjetaID.getText()),fieldTarjetaNumber.getText(),fieldClienteTel.getText());
+//        Query query = new Query();
+//        query.addTarjeta(tarjeta);
+//        showTarjetas();
+//
+//    }
+//    @FXML
+//    private void deleteTarjeta()
+//    {
+//        int clienteId = Integer.parseInt(fieldClienteID.getText());
+//        Query query = new Query();
+//        query.deleteCliente(clienteId);
+//        showClientes();
+//
+//    }
+//
+//    @FXML
+//    private void updateTarjetaFunction()
+//    {
+//        Cliente cliente = new Cliente(Integer.parseInt(fieldClienteID.getText()),fieldClienteName.getText(), fieldClienteAddress.getText(),fieldClienteTel.getText());
+//        Query query = new Query();
+//        query.updateCliente(cliente);
+//        showClientes();
+//    }
 
 
 

@@ -21,6 +21,8 @@ public class Tarjeta {
         this.numero_tarjeta = numero_tarjeta;
     }
 
+
+
     public Date getFecha_expiracion() {
         return fecha_expiracion;
     }
