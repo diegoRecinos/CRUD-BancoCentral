@@ -8,52 +8,96 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 
 import java.net.URL;
+import java.util.Date;
 import java.util.ResourceBundle;
 
 public class BCNController implements Initializable {
+    @FXML
     public TextField fieldTransaccionIDTarjeta;
+    @FXML
     public Button btnTarjetaDelete;
+    @FXML
     public Button btnTarjetaUpdate;
+    @FXML
     public Button btnTarjetaRead;
+    @FXML
     public Button btnTarjetaSave;
+    @FXML
     public TextField fieldTransacionDesc;
+    @FXML
     public DatePicker dtpickerTransaccionDate;
+    @FXML
     public TextField fieldTransaccionMonto;
+    @FXML
     public Button btnTransaccionSave;
+    @FXML
     public Button btnTransaccionRead;
+    @FXML
     public Button btnTransaccionUpdate;
+    @FXML
     public Button btnTransaccionDelete;
-    public TableView tableViewTarjeta;
-    public TableColumn colTarjetaID;
-    public TableColumn colTarjetaNumero;
-    public TableColumn colTarjetaFechaExp;
-    public TableColumn colTarjetaIDtipoTarjeta;
-    public TableColumn colTarjetaIDtipoFacilitador;
-    public TableColumn colTarjetaIDCliente;
-    public TableColumn colTransaccionIDCliente;
-    public TableColumn colTransaccionIDTarjeta;
-    public TableColumn colTransaccionMonto;
-    public TableColumn colTransaccionFecha;
-    public TableColumn colTransaccionDescripcion;
-    public TableColumn colTransaccionID;
-    public TableView tableViewTransaccion;
+    @FXML
+    public TableView<Tarjeta> tableViewTarjeta;
+    @FXML
+    public TableColumn<Tarjeta,Integer> colTarjetaID;
+    @FXML
+    public TableColumn<Tarjeta,String> colTarjetaNumero;
+    @FXML
+    public TableColumn<Tarjeta,Date> colTarjetaFechaExp;
+    @FXML
+    public TableColumn<Tarjeta,Integer> colTarjetaIDtipoTarjeta;
+    @FXML
+    public TableColumn<Tarjeta,Integer> colTarjetaIDtipoFacilitador;
+    @FXML
+    public TableColumn<Tarjeta,Integer> colTarjetaIDCliente;
+    @FXML
+    public TableColumn<Transaccion,Integer> colTransaccionIDCliente;
+    @FXML
+    public TableColumn<Transaccion,Integer> colTransaccionIDTarjeta;
+    @FXML
+    public TableColumn<Transaccion,Double> colTransaccionMonto;
+    @FXML
+    public TableColumn<Transaccion, Date> colTransaccionFecha;
+    @FXML
+    public TableColumn<Transaccion,String> colTransaccionDescripcion;
+    @FXML
+    public TableColumn<Transaccion,Integer> colTransaccionID;
+    @FXML
+    public TableView<Transaccion> tableViewTransaccion;
+    @FXML
     public TextField fieldTarjetaIDCliente;
+    @FXML
     public TextField fieldTarjetaNumber;
+    @FXML
     public DatePicker dtpickerTarjetaExpire;
-    public ComboBox comboBxTarjetaFacilitador;
+    @FXML
+    public ComboBox<Tarjeta> comboBxTarjetaFacilitador;
+    @FXML
     public Button btnClienteDelete;
+    @FXML
     public Button btnClienteUpdate;
+    @FXML
     public Button btnClienteRead;
+    @FXML
     public Button btnClienteSave;
+    @FXML
     public TextField fieldClienteTel;
+    @FXML
     public TextField fieldClienteID;
+    @FXML
     public TextField fieldClienteAddress;
+    @FXML
     public TextField fieldClienteName;
-    public TableColumn colClienteTelefono;
-    public TableColumn colClienteDireccion;
-    public TableColumn colClienteNombre;
-    public TableColumn colClienteID;
-    public TableView tableViewCliente;
+    @FXML
+    public TableColumn<Cliente, String> colClienteTelefono;
+    @FXML
+    public TableColumn<Cliente, String> colClienteDireccion;
+    @FXML
+    public TableColumn<Cliente, String> colClienteNombre;
+    @FXML
+    public TableColumn<Cliente, Integer> colClienteID;
+    @FXML
+    public TableView<Cliente> tableViewCliente;
     @FXML
     private Label welcomeText;
 //    //private ComboBox<Facilitador> facilitador;
@@ -118,17 +162,48 @@ public class BCNController implements Initializable {
         tableView.setItems(list);
     }
     
-//    @FXML
-//    private void showClientes()
-//    {
-//        Query query = new Query();
-//        ObservableList<Cliente> list = query.getClienteList();
-//        columnID.setCellValueFactory(new PropertyValueFactory<>("id"));
-//        colFirstName.setCellValueFactory(new PropertyValueFactory<>("firstName"));
-//        colMiddleName.setCellValueFactory(new PropertyValueFactory<>("middleName"));
-//        colLastName.setCellValueFactory(new PropertyValueFactory<>("lastName"));
-//        tableView.setItems(list);
-//    }
+    @FXML
+    private void showClientes()
+    {
+        Query query = new Query();
+        ObservableList<Cliente> list = query.getClienteList();
+        colClienteID.setCellValueFactory(new PropertyValueFactory<>("id"));
+        colClienteNombre.setCellValueFactory(new PropertyValueFactory<>("nombre"));
+        colClienteDireccion.setCellValueFactory(new PropertyValueFactory<>("direccion"));
+        colClienteTelefono.setCellValueFactory(new PropertyValueFactory<>("telefono"));
+
+        tableViewCliente.setItems(list);
+    }
+
+    @FXML
+    private void showTransacciones()
+    {
+        Query query = new Query();
+        ObservableList<Transaccion> list = query.getTransaccionList();
+        colTransaccionID.setCellValueFactory(new PropertyValueFactory<>("id"));
+        colTransaccionFecha.setCellValueFactory(new PropertyValueFactory<>("fecha_compra"));
+        colTransaccionMonto.setCellValueFactory(new PropertyValueFactory<>("monto_total"));
+        colTransaccionDescripcion.setCellValueFactory(new PropertyValueFactory<>("descripcion"));
+        colTransaccionIDTarjeta.setCellValueFactory(new PropertyValueFactory<>("id_tarjeta"));
+        colTransaccionIDCliente.setCellValueFactory(new PropertyValueFactory<>("id_cliente"));
+
+        tableViewTransaccion.setItems(list);
+    }
+
+    @FXML
+    private void showTarjetas()
+    {
+        Query query = new Query();
+        ObservableList<Tarjeta> list = query.getTarjetaList();
+        colTarjetaID.setCellValueFactory(new PropertyValueFactory<>("id"));
+        colTarjetaNumero.setCellValueFactory(new PropertyValueFactory<>("numero_tarjeta"));
+        colTarjetaIDtipoTarjeta.setCellValueFactory(new PropertyValueFactory<>("id_tipo_tarjeta"));
+        colTarjetaFechaExp.setCellValueFactory(new PropertyValueFactory<>("fecha_expiracion"));
+        colTarjetaIDtipoFacilitador.setCellValueFactory(new PropertyValueFactory<>("id_facilitador_tarjeta"));
+        colTarjetaIDCliente.setCellValueFactory(new PropertyValueFactory<>("id_cliente"));
+
+        tableViewTarjeta.setItems(list);
+    }
     
 
     @FXML

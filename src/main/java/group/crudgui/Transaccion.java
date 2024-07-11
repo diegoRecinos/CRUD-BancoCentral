@@ -3,45 +3,20 @@ import java.sql.*;
 
 public class Transaccion {
     private int id;
-    private Date fechaCompra;
-    private double montoTotal;
+    private Date fecha_compra;
+    private double monto_total;
     private String descripcion;
-    private int idTarjeta;
-    private int idCliente;
+    private int id_tarjeta;
+    private int id_cliente;
 
     // Constructor
-    public Transaccion(int id, Date fechaCompra, double montoTotal, String descripcion, int idTarjeta, int idCliente) {
+    public Transaccion(int id, Date fecha_compra, double monto_total, String descripcion, int id_tarjeta, int id_cliente) {
         this.id = id;
-        this.fechaCompra = fechaCompra;
-        this.montoTotal = montoTotal;
+        this.fecha_compra = fecha_compra;
+        this.monto_total = monto_total;
         this.descripcion = descripcion;
-        this.idTarjeta = idTarjeta;
-        this.idCliente = idCliente;
-    }
-
-    // Getters and Setters
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public Date getFechaCompra() {
-        return fechaCompra;
-    }
-
-    public void setFechaCompra(Date fechaCompra) {
-        this.fechaCompra = fechaCompra;
-    }
-
-    public double getMontoTotal() {
-        return montoTotal;
-    }
-
-    public void setMontoTotal(double montoTotal) {
-        this.montoTotal = montoTotal;
+        this.id_tarjeta = id_tarjeta;
+        this.id_cliente = id_cliente;
     }
 
     public String getDescripcion() {
@@ -52,31 +27,43 @@ public class Transaccion {
         this.descripcion = descripcion;
     }
 
-    public int getIdTarjeta() {
-        return idTarjeta;
+    public Date getFecha_compra() {
+        return fecha_compra;
     }
 
-    public void setIdTarjeta(int idTarjeta) {
-        this.idTarjeta = idTarjeta;
+    public void setFecha_compra(Date fecha_compra) {
+        this.fecha_compra = fecha_compra;
     }
 
-    public int getIdCliente() {
-        return idCliente;
+    public int getId() {
+        return id;
     }
 
-    public void setIdCliente(int idCliente) {
-        this.idCliente = idCliente;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    @Override
-    public String toString() {
-        return "Transaccion{" +
-                "id=" + id +
-                ", fechaCompra=" + fechaCompra +
-                ", montoTotal=" + montoTotal +
-                ", descripcion='" + descripcion + '\'' +
-                ", idTarjeta=" + idTarjeta +
-                ", idCliente=" + idCliente +
-                '}';
+    public int getId_cliente() {
+        return id_cliente;
+    }
+
+    public void setId_cliente(int id_cliente) {
+        this.id_cliente = id_cliente;
+    }
+
+    public int getId_tarjeta() {
+        return id_tarjeta;
+    }
+
+    public void setId_tarjeta(int id_tarjeta) {
+        this.id_tarjeta = id_tarjeta;
+    }
+
+    public double getMonto_total() {
+        return monto_total;
+    }
+
+    public void setMonto_total(double monto_total) {
+        this.monto_total = monto_total;
     }
 }
