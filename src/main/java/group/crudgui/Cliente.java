@@ -6,7 +6,7 @@ public class Cliente {
     private String direccion;
     private String telefono;
 
-    public Cliente(String direccion, int id, String nombre, String telefono) {
+    public Cliente( int id,String nombre, String direccion, String telefono) {
         this.direccion = direccion;
         this.id = id;
         this.nombre = nombre;

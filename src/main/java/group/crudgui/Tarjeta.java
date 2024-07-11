@@ -11,13 +11,14 @@ public class Tarjeta {
     private String numero_tarjeta;
     private Date fecha_expiracion;
 
-    public Tarjeta(Date fecha_expiracion, int id, int id_cliente, int id_facilitador_tarjeta, int id_tipo_tarjeta, String numero_tarjeta) {
-        this.fecha_expiracion = fecha_expiracion;
+    public Tarjeta(int id, String numeroTarjeta, int idTipoTarjeta, Date fechaExpiracion, int idFacilitadorTarjeta, int idCliente)
+    {
+        this.fecha_expiracion = fechaExpiracion;
         this.id = id;
-        this.id_cliente = id_cliente;
-        this.id_facilitador_tarjeta = id_facilitador_tarjeta;
-        this.id_tipo_tarjeta = id_tipo_tarjeta;
-        this.numero_tarjeta = numero_tarjeta;
+        this.id_cliente = idCliente;
+        this.id_facilitador_tarjeta = idFacilitadorTarjeta;
+        this.id_tipo_tarjeta = idTipoTarjeta;
+        this.numero_tarjeta = numeroTarjeta;
     }
 
     public Date getFecha_expiracion() {

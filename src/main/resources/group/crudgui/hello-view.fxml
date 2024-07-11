@@ -16,40 +16,40 @@
 
 <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="676.0" prefWidth="982.0" spacing="20.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="group.crudgui.BCNController">
     <AnchorPane prefHeight="748.0" prefWidth="814.0">
-        <TableView fx:id="tableView" layoutX="9.0" layoutY="230.0" onMouseClicked="#mouseClicked" prefHeight="98.0" prefWidth="698.0">
+        <TableView fx:id="tableViewCliente" layoutX="9.0" layoutY="230.0" onMouseClicked="#mouseClicked" prefHeight="98.0" prefWidth="698.0">
             <columns>
-                <TableColumn fx:id="columnID" prefWidth="32.79998779296875" text="id" />
-                <TableColumn fx:id="colFirstName" prefWidth="175.20000839233398" text="nombre" />
-                <TableColumn fx:id="colMiddleName" prefWidth="197.6000213623047" text="direccion" />
-                <TableColumn fx:id="colLastName" prefWidth="287.199951171875" text="telefono" />
+                <TableColumn fx:id="colClienteID" prefWidth="32.79998779296875" text="id" />
+                <TableColumn fx:id="colClienteNombre" prefWidth="175.20000839233398" text="nombre" />
+                <TableColumn fx:id="colClienteDireccion" prefWidth="197.6000213623047" text="direccion" />
+                <TableColumn fx:id="colClienteTelefono" prefWidth="287.199951171875" text="telefono" />
             </columns>
         </TableView>
       <VBox layoutX="58.0" layoutY="32.0" prefHeight="130.0" prefWidth="170.0">
          <children>
-               <TextField fx:id="fieldFirstName" />
-               <TextField fx:id="fieldMiddleName" prefHeight="26.0" prefWidth="307.0">
+               <TextField fx:id="fieldClienteName" />
+               <TextField fx:id="fieldClienteAddress" prefHeight="26.0" prefWidth="307.0">
                <VBox.margin>
                   <Insets top="8.0" />
                </VBox.margin>
             </TextField>
-               <TextField fx:id="fieldLastName">
+               <TextField fx:id="fieldClienteTel">
                <VBox.margin>
                   <Insets top="8.0" />
                </VBox.margin>
             </TextField>
-            <TextField fx:id="fieldStudentID">
+            <TextField fx:id="fieldClienteID">
                <VBox.margin>
                   <Insets top="8.0" />
                </VBox.margin>
             </TextField>
          </children>
       </VBox>
-      <HBox layoutX="30.0" layoutY="198.0" prefHeight="35.0" prefWidth="220.0">
+      <HBox layoutX="12.0" layoutY="198.0" prefHeight="35.0" prefWidth="220.0">
          <children>
-              <Button fx:id="btnSave" mnemonicParsing="false" onAction="#addStudentFunction" prefHeight="26.0" prefWidth="50.0" text="Create" />
-            <Button fx:id="btnRefreshTable" mnemonicParsing="false" onAction="#showStudents" text="ReadDB" />
-              <Button fx:id="btnUpdate" mnemonicParsing="false" onAction="#updateStudentFunction" text="Update" />
-              <Button fx:id="btnDelete" mnemonicParsing="false" onAction="#deleteStudent" text="Delete" />
+              <Button fx:id="btnClienteSave" mnemonicParsing="false" onAction="#addStudentFunction" prefHeight="26.0" prefWidth="50.0" text="Create" />
+            <Button fx:id="btnClienteRead" mnemonicParsing="false" onAction="#showStudents" text="ReadDB" />
+              <Button fx:id="btnClienteUpdate" mnemonicParsing="false" onAction="#updateStudentFunction" text="Update" />
+              <Button fx:id="btnClienteDelete" mnemonicParsing="false" onAction="#deleteStudent" text="Delete" />
          </children>
       </HBox>
       <GridPane layoutX="286.0" layoutY="67.0">
@@ -86,18 +86,18 @@
       <Label layoutX="122.0" layoutY="14.0" text="Cliente" />
       <VBox layoutX="293.0" layoutY="30.0" prefHeight="130.0" prefWidth="162.0">
          <children>
-            <ComboBox prefHeight="26.0" prefWidth="162.0" />
-            <DatePicker>
+            <ComboBox fx:id="comboBxTarjetaFacilitador" prefHeight="26.0" prefWidth="162.0" />
+            <DatePicker fx:id="dtpickerTarjetaExpire">
                <VBox.margin>
                   <Insets top="8.0" />
                </VBox.margin>
             </DatePicker>
-            <TextField fx:id="fieldLastName1">
+            <TextField fx:id="fieldTarjetaNumber">
                <VBox.margin>
                   <Insets top="8.0" />
                </VBox.margin>
             </TextField>
-            <TextField>
+            <TextField fx:id="fieldTarjetaIDCliente">
                <VBox.margin>
                   <Insets top="8.0" />
                </VBox.margin>
@@ -135,44 +135,42 @@
          </children>
       </VBox>
       <Label layoutX="349.0" layoutY="13.0" text="Tarjeta" />
-      <TableView fx:id="tableView1" layoutX="8.0" layoutY="338.0" onMouseClicked="#mouseClicked" prefHeight="98.0" prefWidth="698.0">
+      <TableView fx:id="tableViewTransaccion" layoutX="8.0" layoutY="338.0" onMouseClicked="#mouseClicked" prefHeight="98.0" prefWidth="698.0">
          <columns>
-            <TableColumn fx:id="columnID1" prefWidth="32.79998779296875" text="id" />
-            <TableColumn fx:id="colFirstName1" prefWidth="146.39999389648438" text="descripcion" />
-            <TableColumn fx:id="colMiddleName1" prefWidth="128.00001525878906" text="fecha_compra" />
-            <TableColumn fx:id="colLastName1" prefWidth="145.5999755859375" text="monto" />
-            <TableColumn fx:id="colLastName11" prefWidth="109.60003662109375" text="id_tarjeta" />
-            <TableColumn fx:id="colLastName111" prefWidth="132.800048828125" text="id_cliente" />
+            <TableColumn fx:id="colTransaccionID" prefWidth="32.79998779296875" text="id" />
+            <TableColumn fx:id="colTransaccionDescripcion" prefWidth="146.39999389648438" text="descripcion" />
+            <TableColumn fx:id="colTransaccionFecha" prefWidth="128.00001525878906" text="fecha_compra" />
+            <TableColumn fx:id="colTransaccionMonto" prefWidth="145.5999755859375" text="monto" />
+            <TableColumn fx:id="colTransaccionIDTarjeta" prefWidth="109.60003662109375" text="id_tarjeta" />
+            <TableColumn fx:id="colTransaccionIDCliente" prefWidth="132.800048828125" text="id_cliente" />
          </columns>
       </TableView>
-      <HBox layoutX="260.0" layoutY="198.0" prefHeight="35.0" prefWidth="220.0">
+      <HBox layoutX="251.0" layoutY="199.0" prefHeight="35.0" prefWidth="220.0">
          <children>
-            <Button fx:id="btnSave1" mnemonicParsing="false" onAction="#addStudentFunction" prefHeight="26.0" prefWidth="50.0" text="Create" />
-            <Button fx:id="btnRefreshTable1" mnemonicParsing="false" onAction="#showStudents" text="ReadDB" />
-            <Button fx:id="btnUpdate1" mnemonicParsing="false" onAction="#updateStudentFunction" text="Update" />
-            <Button fx:id="btnDelete1" mnemonicParsing="false" onAction="#deleteStudent" text="Delete" />
+            <Button fx:id="btnTarjetaSave" mnemonicParsing="false" onAction="#addStudentFunction" prefHeight="26.0" prefWidth="50.0" text="Create" />
+            <Button fx:id="btnTarjetaRead" mnemonicParsing="false" onAction="#showStudents" text="ReadDB" />
+            <Button fx:id="btnTarjetaUpdate" mnemonicParsing="false" onAction="#updateStudentFunction" text="Update" />
+            <Button fx:id="btnTarjetaDelete" mnemonicParsing="false" onAction="#deleteStudent" text="Delete" />
          </children>
       </HBox>
-      <VBox layoutX="549.0" layoutY="31.0" prefHeight="157.0" prefWidth="162.0">
-         <children>
-            <TextField prefHeight="46.0" prefWidth="162.0" />
-            <DatePicker>
-               <VBox.margin>
-                  <Insets top="8.0" />
-               </VBox.margin>
+        <VBox layoutX="549.0" layoutY="31.0" prefHeight="157.0" prefWidth="162.0">
+            <TextField fx:id="fieldTransacionDesc" prefHeight="46.0" prefWidth="162.0"/>
+            <DatePicker fx:id="dtpickerTransaccionDate">
+                <VBox.margin>
+                    <Insets top="8.0"/>
+                </VBox.margin>
             </DatePicker>
-            <TextField fx:id="fieldLastName11">
-               <VBox.margin>
-                  <Insets top="8.0" />
-               </VBox.margin>
+            <TextField fx:id="fieldTransaccionMonto">
+                <VBox.margin>
+                    <Insets top="8.0"/>
+                </VBox.margin>
             </TextField>
-            <TextField>
-               <VBox.margin>
-                  <Insets top="8.0" />
-               </VBox.margin>
+            <TextField fx:id="fieldTransaccionIDTarjeta">
+                <VBox.margin>
+                    <Insets top="8.0"/>
+                </VBox.margin>
             </TextField>
-         </children>
-      </VBox>
+        </VBox>
       <Label layoutX="601.0" layoutY="13.0" text="Transaccion" />
       <VBox layoutX="476.0" layoutY="24.0" prefHeight="164.0" prefWidth="67.0">
          <children>
@@ -203,20 +201,20 @@
       </VBox>
       <HBox layoutX="491.0" layoutY="198.0" prefHeight="35.0" prefWidth="220.0">
          <children>
-            <Button fx:id="btnSave11" mnemonicParsing="false" onAction="#addStudentFunction" prefHeight="26.0" prefWidth="50.0" text="Create" />
-            <Button fx:id="btnRefreshTable11" mnemonicParsing="false" onAction="#showStudents" text="ReadDB" />
-            <Button fx:id="btnUpdate11" mnemonicParsing="false" onAction="#updateStudentFunction" text="Update" />
-            <Button fx:id="btnDelete11" mnemonicParsing="false" onAction="#deleteStudent" text="Delete" />
+            <Button fx:id="btnTransaccionSave" mnemonicParsing="false" onAction="#addStudentFunction" prefHeight="26.0" prefWidth="50.0" text="Create" />
+            <Button fx:id="btnTransaccionRead" mnemonicParsing="false" onAction="#showStudents" text="ReadDB" />
+            <Button fx:id="btnTransaccionUpdate" mnemonicParsing="false" onAction="#updateStudentFunction" text="Update" />
+            <Button fx:id="btnTransaccionDelete" mnemonicParsing="false" onAction="#deleteStudent" text="Delete" />
          </children>
       </HBox>
-      <TableView fx:id="tableView11" layoutX="10.0" layoutY="453.0" onMouseClicked="#mouseClicked" prefHeight="98.0" prefWidth="698.0">
+      <TableView fx:id="tableViewTarjeta" layoutX="10.0" layoutY="453.0" onMouseClicked="#mouseClicked" prefHeight="98.0" prefWidth="698.0">
          <columns>
-            <TableColumn fx:id="columnID11" prefWidth="32.79998779296875" text="id" />
-            <TableColumn fx:id="colFirstName11" prefWidth="146.39999389648438" text="numero" />
-            <TableColumn fx:id="colMiddleName11" prefWidth="128.00001525878906" text="fecha" />
-            <TableColumn fx:id="colLastName11" prefWidth="145.5999755859375" text="id_tipo_tarjeta" />
-            <TableColumn fx:id="colLastName111" prefWidth="109.60003662109375" text="id_facilitador" />
-            <TableColumn fx:id="colLastName1111" prefWidth="133.60001220703123" text="id_cliente" />
+            <TableColumn fx:id="colTarjetaID" prefWidth="32.79998779296875" text="id" />
+            <TableColumn fx:id="colTarjetaNumero" prefWidth="146.39999389648438" text="numero" />
+            <TableColumn fx:id="colTarjetaFechaExp" prefWidth="128.00001525878906" text="fecha" />
+            <TableColumn fx:id="colTarjetaIDtipoTarjeta" prefWidth="145.5999755859375" text="id_tipo_tarjeta" />
+            <TableColumn fx:id="colTarjetaIDtipoFacilitador" prefWidth="109.60003662109375" text="id_facilitador" />
+            <TableColumn fx:id="colTarjetaIDCliente" prefWidth="133.60001220703123" text="id_cliente" />
          </columns>
       </TableView>
     </AnchorPane>
