@@ -136,7 +136,7 @@
             <TableColumn fx:id="colTransaccionIDCliente" prefWidth="132.800048828125" text="id_cliente" />
          </columns>
       </TableView>
-        <VBox layoutX="544.0" layoutY="31.0" prefHeight="157.0" prefWidth="162.0">
+        <VBox layoutX="544.0" layoutY="31.0" prefHeight="158.0" prefWidth="170.0">
             <TextField fx:id="fieldTransacionDesc" prefHeight="46.0" prefWidth="162.0" />
             <DatePicker fx:id="dtpickerTransaccionDate">
                 <VBox.margin>
@@ -260,7 +260,7 @@
             </HBox>
          </children>
       </HBox>
-      <VBox layoutX="296.0" layoutY="158.0" prefHeight="53.0" prefWidth="122.0">
+      <VBox layoutX="296.0" layoutY="160.0" prefHeight="53.0" prefWidth="122.0">
          <children>
             <RadioButton fx:id="rdbtnVisa" mnemonicParsing="false" prefHeight="18.0" prefWidth="54.0" text="Visa">
                <toggleGroup>

@@ -10,6 +10,7 @@ public class Tarjeta {
 
     private String numero_tarjeta;
     private Date fecha_expiracion;
+    public Tarjeta(){}
 
     public Tarjeta(int id, String numero_tarjeta, int id_tipo_tarjeta, Date fecha_expiracion, int id_facilitador_tarjeta, int id_cliente)
     {

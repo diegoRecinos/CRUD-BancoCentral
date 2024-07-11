@@ -314,33 +314,44 @@ public class BCNController implements Initializable {
 
     }
 
-//    @FXML
-//    private void addTarjetaFunction()
-//    {
-//        Tarjeta tarjeta = new Tarjeta(Integer.parseInt(fieldTarjetaID.getText()),fieldTarjetaNumber.getText(),fieldClienteTel.getText());
-//        Query query = new Query();
-//        query.addTarjeta(tarjeta);
-//        showTarjetas();
-//
-//    }
-//    @FXML
-//    private void deleteTarjeta()
-//    {
-//        int clienteId = Integer.parseInt(fieldClienteID.getText());
-//        Query query = new Query();
-//        query.deleteCliente(clienteId);
-//        showClientes();
-//
-//    }
-//
-//    @FXML
-//    private void updateTarjetaFunction()
-//    {
-//        Cliente cliente = new Cliente(Integer.parseInt(fieldClienteID.getText()),fieldClienteName.getText(), fieldClienteAddress.getText(),fieldClienteTel.getText());
-//        Query query = new Query();
-//        query.updateCliente(cliente);
-//        showClientes();
-//    }
+    @FXML
+    private void addTarjetaFunction()
+    {
+        if (rdbtnCredito.isSelected() || rdbtnDebito.isSelected()) {
+            Tarjeta tarjeta = new Tarjeta();
+
+            if (rdbtnCredito.isSelected())
+            {
+                tarjeta.setId_tipo_tarjeta(1);
+            }else{tarjeta.setId_tipo_tarjeta(2);}
+
+            tarjeta = new Tarjeta(Integer.parseInt(fieldTarjetaID.getText()), fieldTarjetaNumber.getText(), tarjeta.getId_tipo_tarjeta(), tarjeta.getFecha_expiracion(),tarjeta.getId_facilitador_tarjeta(), Integer.parseInt(fieldTarjetaIDCliente.getText()));
+            Query query = new Query();
+            query.addTarjeta(tarjeta);
+            showTarjetas();
+        }else{
+            System.out.println("radioButtonNotSelected");
+        }
+
+    }
+    @FXML
+    private void deleteTarjeta()
+    {
+        int clienteId = Integer.parseInt(fieldClienteID.getText());
+        Query query = new Query();
+        query.deleteCliente(clienteId);
+        showClientes();
+
+    }
+
+    @FXML
+    private void updateTarjetaFunction()
+    {
+        Cliente cliente = new Cliente(Integer.parseInt(fieldClienteID.getText()),fieldClienteName.getText(), fieldClienteAddress.getText(),fieldClienteTel.getText());
+        Query query = new Query();
+        query.updateCliente(cliente);
+        showClientes();
+    }
 
 
 
