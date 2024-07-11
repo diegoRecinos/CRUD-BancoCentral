@@ -19,9 +19,7 @@ public class Query {
             //String insertSQL = "INSERT INTO student VALUES (?, ?, ?, ?)";
 
             Connection conn = databaseConnection.getConnection();
-            //String query = "SELECT * FROM student";
-            //Statement statement = conn.createStatement();
-            //statement.executeQuery(query1);
+
             PreparedStatement preparedStatement = conn.prepareStatement(query3);
 
 //            String nombre = txtNombreCliente.getText();

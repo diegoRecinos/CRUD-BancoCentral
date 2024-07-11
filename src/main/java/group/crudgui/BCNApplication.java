@@ -13,7 +13,7 @@ public class BCNApplication extends Application {
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(BCNApplication.class.getResource("hello-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 320, 240);
-        stage.setTitle("CRUD APP");
+        stage.setTitle("BCN");
         stage.setMinWidth(950);
         stage.setMinHeight(650);
         stage.setResizable(true);
