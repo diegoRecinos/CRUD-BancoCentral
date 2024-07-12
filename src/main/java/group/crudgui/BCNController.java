@@ -6,18 +6,15 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
-import java.time.ZoneId;
+
 import java.sql.Date;
 
 import java.net.URL;
 import java.time.LocalDate;
 
 import java.util.ResourceBundle;
-import java.sql.*;
-import java.sql.Date;
-import javafx.fxml.FXML;
+
 import javafx.scene.control.DatePicker;
-import java.time.LocalDate;
 
 
 public class BCNController implements Initializable {
@@ -116,8 +113,11 @@ public class BCNController implements Initializable {
     public RadioButton rdbtnAmericanExpress;
     public RadioButton rdbtnMasterCard;
     public RadioButton rdbtnVisa;
+    public TextField fieldTransaccionIDCliente;
     @FXML
     private Label welcomeText;
+    private Tarjeta tarjeta;
+    private Transaccion transaccion;
 //    //private ComboBox<Facilitador> facilitador;
 //    @FXML
 //    private DatePicker dpFechaExp;
@@ -361,24 +361,163 @@ public class BCNController implements Initializable {
         }
 
     }
-//    @FXML
-//    private void deleteTarjeta()
-//    {
-//        int clienteId = Integer.parseInt(fieldClienteID.getText());
-//        Query query = new Query();
-//        query.deleteCliente(clienteId);
-//        showClientes();
-//
-//    }
-//
-//    @FXML
-//    private void updateTarjetaFunction()
-//    {
-//        Cliente cliente = new Cliente(Integer.parseInt(fieldClienteID.getText()),fieldClienteName.getText(), fieldClienteAddress.getText(),fieldClienteTel.getText());
-//        Query query = new Query();
-//        query.updateCliente(cliente);
-//        showClientes();
-//    }
+
+    @FXML
+    private void deleteTarjeta()
+    {
+        int tarjetaId = Integer.parseInt(fieldTarjetaID.getText());
+        Query query = new Query();
+        query.deleteTarjeta(tarjetaId);
+        showTarjetas();
+
+    }
+
+    @FXML
+    private void updateTarjetaFunction()
+    {
+        if (  (rdbtnCredito.isSelected() || rdbtnDebito.isSelected() )
+                && (rdbtnAmericanExpress.isSelected() || rdbtnVisa.isSelected() || rdbtnMasterCard.isSelected() ) ) {
+
+            Tarjeta tarjeta = new Tarjeta();
+
+            LocalDate fecha_expiracion_LocalDate = dtpickerTarjetaExpire.getValue();
+
+            Date fecha_expiracion = Date.valueOf(fecha_expiracion_LocalDate);
+            tarjeta.setFecha_expiracion(fecha_expiracion);
+
+            if (rdbtnCredito.isSelected()) {
+                tarjeta.setId_tipo_tarjeta(1);
+
+            } else {
+                tarjeta.setId_tipo_tarjeta(2);
+            }
+
+            if (rdbtnVisa.isSelected()) {
+                tarjeta.setId_facilitador_tarjeta(1);
+
+            } else if (rdbtnMasterCard.isSelected()) {
+                tarjeta.setId_facilitador_tarjeta(2);
+
+            } else if (rdbtnAmericanExpress.isSelected()) {
+                tarjeta.setId_facilitador_tarjeta(3);
+            }
+
+            tarjeta = new Tarjeta(Integer.parseInt(fieldTarjetaID.getText()), fieldTarjetaNumber.getText(), tarjeta.getId_tipo_tarjeta(), tarjeta.getFecha_expiracion(), tarjeta.getId_facilitador_tarjeta(), Integer.parseInt(fieldTarjetaIDCliente.getText()));
+
+            Query query = new Query();
+            query.updateTarjeta(tarjeta);
+            showTarjetas();
+        }else {
+            System.out.println("Datos tarjeta incompletos");
+        }
+
+
+    }
+
+    @FXML
+    private void mouseClickedTarjeta(MouseEvent e)
+    {
+        try {
+            Tarjeta tarjeta = (Tarjeta) tableViewTarjeta.getSelectionModel().getSelectedItem();
+            tarjeta = new Tarjeta(tarjeta.getId(), tarjeta.getNumero_tarjeta(), tarjeta.getId_tipo_tarjeta(), tarjeta.getFecha_expiracion(), tarjeta.getId_facilitador_tarjeta(),tarjeta.getId_cliente());
+            this.tarjeta = tarjeta;
+            fieldTarjetaID.setText(String.valueOf (tarjeta.getId()));
+            fieldTarjetaNumber.setText(tarjeta.getNumero_tarjeta());
+            fieldTarjetaIDCliente.setText(String.valueOf (tarjeta.getId_cliente()));
+            dtpickerTarjetaExpire.setValue(tarjeta.getFecha_expiracion().toLocalDate());
+
+            if (tarjeta.getId_tipo_tarjeta() == 1)
+            {
+                rdbtnCredito.setSelected(true); rdbtnDebito.setSelected(false);
+            }else{rdbtnDebito.setSelected(true); rdbtnCredito.setSelected(false);}
+
+            if (tarjeta.getId_facilitador_tarjeta() == 1){
+                rdbtnVisa.setSelected(true); rdbtnMasterCard.setSelected(false); rdbtnAmericanExpress.setSelected(false);
+            } else if (tarjeta.getId_facilitador_tarjeta() == 2) {
+                rdbtnVisa.setSelected(false); rdbtnMasterCard.setSelected(true); rdbtnAmericanExpress.setSelected(false);
+            } else if (tarjeta.getId_facilitador_tarjeta() == 3) {
+                rdbtnVisa.setSelected(false); rdbtnMasterCard.setSelected(false); rdbtnAmericanExpress.setSelected(true);
+            }
+
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
+    }
+
+
+
+    @FXML
+    private void addTransaccionFunction()
+    {
+
+            Transaccion transaccion = new Transaccion();
+
+            LocalDate fecha_compra_LocalDate = dtpickerTransaccionDate.getValue();
+
+            Date fecha_compra = Date.valueOf(fecha_compra_LocalDate);
+
+            transaccion.setFecha_compra(fecha_compra);
+
+            transaccion = new Transaccion(Integer.parseInt(fieldTransaccionID.getText()), transaccion.getFecha_compra(), Double.parseDouble(fieldTransaccionMonto.getText()), fieldTransacionDesc.getText(), Integer.parseInt(fieldTransaccionIDTarjeta.getText()) , Integer.parseInt(fieldTransaccionIDCliente.getText()));
+            Query query = new Query();
+            query.addTransaccion(transaccion);
+            showTransacciones();
+
+
+    }
+
+    @FXML
+    private void deleteTransaccion()
+    {
+        int transaccionId = Integer.parseInt(fieldTransaccionID.getText());
+        Query query = new Query();
+        query.deleteTransaccion(transaccionId);
+        showTransacciones();
+
+    }
+
+    @FXML
+    private void updateTransaccion()
+    {
+        Transaccion transaccion = new Transaccion();
+
+        LocalDate fecha_transaccion_localdate = dtpickerTransaccionDate.getValue();
+
+        Date fecha_transaccion = Date.valueOf(fecha_transaccion_localdate);
+        transaccion.setFecha_compra(fecha_transaccion);
+
+        transaccion = new Transaccion(Integer.parseInt(fieldTransaccionID.getText()) , transaccion.getFecha_compra(), Double.parseDouble(fieldTransaccionMonto.getText()) , fieldTransacionDesc.getText() , Integer.parseInt(fieldTransaccionIDTarjeta.getText()), Integer.parseInt(fieldTransaccionIDCliente.getText()) );
+
+        Query query = new Query();
+        query.updateTransaccion(transaccion);
+        showTransacciones();
+
+    }
+
+    @FXML
+    private void mouseClickedTransaccion(MouseEvent e)
+    {
+        try {
+            Transaccion transaccion = (Transaccion) tableViewTransaccion.getSelectionModel().getSelectedItem();
+            transaccion = new Transaccion( transaccion.getId() , transaccion.getFecha_compra(), transaccion.getMonto_total() , transaccion.getDescripcion(), transaccion.getId_tarjeta(), transaccion.getId_cliente() );
+            this.transaccion = transaccion;
+
+            fieldTransaccionID.setText(String.valueOf (transaccion.getId()));
+            fieldTransaccionMonto.setText( String.valueOf(transaccion.getMonto_total()) );
+            fieldTransaccionIDTarjeta.setText(String.valueOf (transaccion.getId_tarjeta()));
+            fieldTransaccionMonto.setText(String.valueOf(transaccion.getMonto_total()));
+            fieldTransaccionIDCliente.setText(String.valueOf(transaccion.getId_cliente()));
+            fieldTransacionDesc.setText(transaccion.getDescripcion());
+            dtpickerTransaccionDate.setValue(transaccion.getFecha_compra().toLocalDate());
+
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
+    }
 
 
 

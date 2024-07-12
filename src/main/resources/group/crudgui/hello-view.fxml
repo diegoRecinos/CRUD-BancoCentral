@@ -17,14 +17,6 @@
 
 <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="676.0" prefWidth="982.0" spacing="20.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="group.crudgui.BCNController">
     <AnchorPane prefHeight="748.0" prefWidth="814.0">
-        <TableView fx:id="tableViewCliente" layoutX="9.0" layoutY="284.0" onMouseClicked="#mouseClickedCliente" prefHeight="114.0" prefWidth="712.0">
-            <columns>
-                <TableColumn fx:id="colClienteID" prefWidth="32.79998779296875" text="id" />
-                <TableColumn fx:id="colClienteNombre" prefWidth="175.20000839233398" text="nombre" />
-                <TableColumn fx:id="colClienteDireccion" prefWidth="197.6000213623047" text="direccion" />
-                <TableColumn fx:id="colClienteTelefono" prefWidth="287.199951171875" text="telefono" />
-            </columns>
-        </TableView>
       <VBox layoutX="53.0" layoutY="32.0" prefHeight="142.0" prefWidth="170.0">
          <children>
                <TextField fx:id="fieldClienteName" />
@@ -126,33 +118,33 @@
          </children>
       </VBox>
       <Label layoutX="349.0" layoutY="13.0" text="Tarjeta" />
-      <TableView fx:id="tableViewTransaccion" layoutX="8.0" layoutY="399.0" prefHeight="114.0" prefWidth="712.0">
-         <columns>
-            <TableColumn fx:id="colTransaccionID" prefWidth="32.79998779296875" text="id" />
-            <TableColumn fx:id="colTransaccionDescripcion" prefWidth="146.39999389648438" text="descripcion" />
-            <TableColumn fx:id="colTransaccionFecha" prefWidth="128.00001525878906" text="fecha_compra" />
-            <TableColumn fx:id="colTransaccionMonto" prefWidth="145.5999755859375" text="monto" />
-            <TableColumn fx:id="colTransaccionIDTarjeta" prefWidth="109.60003662109375" text="id_tarjeta" />
-            <TableColumn fx:id="colTransaccionIDCliente" prefWidth="132.800048828125" text="id_cliente" />
-         </columns>
-      </TableView>
-        <VBox layoutX="544.0" layoutY="31.0" prefHeight="158.0" prefWidth="170.0">
+        <VBox layoutX="544.0" layoutY="31.0" prefHeight="193.0" prefWidth="170.0">
             <TextField fx:id="fieldTransacionDesc" prefHeight="46.0" prefWidth="162.0" />
-            <DatePicker fx:id="dtpickerTransaccionDate">
+            <DatePicker fx:id="dtpickerTransaccionDate" prefHeight="15.0" prefWidth="170.0">
                 <VBox.margin>
-                    <Insets top="8.0" />
+                    <Insets top="2.0" />
                 </VBox.margin>
             </DatePicker>
-            <TextField fx:id="fieldTransaccionMonto">
+            <TextField fx:id="fieldTransaccionMonto" prefHeight="2.0" prefWidth="170.0">
                 <VBox.margin>
-                    <Insets top="8.0" />
+                    <Insets top="2.0" />
                 </VBox.margin>
             </TextField>
             <TextField fx:id="fieldTransaccionIDTarjeta">
                 <VBox.margin>
-                    <Insets top="8.0" />
+                    <Insets top="2.0" />
                 </VBox.margin>
             </TextField>
+         <TextField fx:id="fieldTransaccionIDCliente">
+            <VBox.margin>
+               <Insets top="2.0" />
+            </VBox.margin>
+         </TextField>
+         <TextField>
+            <VBox.margin>
+               <Insets top="2.0" />
+            </VBox.margin>
+         </TextField>
         </VBox>
       <Label layoutX="592.0" layoutY="10.0" text="Transaccion" />
       <VBox layoutX="471.0" layoutY="24.0" prefHeight="164.0" prefWidth="67.0">
@@ -169,34 +161,27 @@
             </Label>
             <Label text="Monto">
                <VBox.margin>
-                  <Insets top="20.0" />
+                  <Insets top="15.0" />
                </VBox.margin>
             </Label>
-            <Label text="ID_Tarjeta">
+            <Label prefHeight="17.0" prefWidth="53.0" text="ID_Tarjeta">
                <VBox.margin>
-                  <Insets top="5.0" />
+                  <Insets top="10.0" />
                </VBox.margin>
-               <padding>
-                  <Insets top="15.0" />
-               </padding>
+            </Label>
+            <Label text="ID_Cliente">
+               <VBox.margin>
+                  <Insets top="8.0" />
+               </VBox.margin>
+            </Label>
+            <Label text="No tarjeta">
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
             </Label>
          </children>
       </VBox>
-      <TableView fx:id="tableViewTarjeta" layoutX="10.0" layoutY="524.0" prefHeight="114.0" prefWidth="712.0">
-         <columns>
-            <TableColumn fx:id="colTarjetaID" prefWidth="32.79998779296875" text="id" />
-            <TableColumn fx:id="colTarjetaNumero" prefWidth="146.39999389648438" text="numero" />
-            <TableColumn fx:id="colTarjetaFechaExp" prefWidth="128.00001525878906" text="fecha" />
-            <TableColumn fx:id="colTarjetaIDtipoTarjeta" prefWidth="145.5999755859375" text="id_tipo_tarjeta" />
-            <TableColumn fx:id="colTarjetaIDtipoFacilitador" prefWidth="109.60003662109375" text="id_facilitador" />
-            <TableColumn fx:id="colTarjetaIDCliente" prefWidth="133.60001220703123" text="id_cliente" />
-         </columns>
-      </TableView>
-      <TextField fx:id="fieldTarjetaID" layoutX="293.0" layoutY="215.0" prefHeight="26.0" prefWidth="162.0" />
-      <TextField fx:id="fieldTransaccionID" layoutX="547.0" layoutY="213.0" prefHeight="26.0" prefWidth="162.0" />
-      <Label layoutX="234.0" layoutY="217.0" text="ID" />
-      <Label layoutX="476.0" layoutY="218.0" text="ID" />
-      <HBox layoutX="10.0" layoutY="245.0" prefHeight="46.0" prefWidth="712.0">
+      <HBox layoutX="10.0" layoutY="265.0" prefHeight="46.0" prefWidth="712.0">
          <children>
             <HBox prefHeight="46.0" prefWidth="238.0">
                <children>
@@ -221,15 +206,15 @@
                      <HBox.margin>
                         <Insets right="5.0" />
                      </HBox.margin></Button>
-                  <Button fx:id="btnTarjetaRead" mnemonicParsing="false" text="Read">
+                  <Button fx:id="btnTarjetaRead" mnemonicParsing="false" onAction="#showTarjetas" text="Read">
                      <HBox.margin>
                         <Insets right="5.0" />
                      </HBox.margin></Button>
-                  <Button fx:id="btnTarjetaUpdate" mnemonicParsing="false" text="Update">
+                  <Button fx:id="btnTarjetaUpdate" mnemonicParsing="false" onAction="#updateTarjetaFunction" text="Update">
                      <HBox.margin>
                         <Insets right="5.0" />
                      </HBox.margin></Button>
-                  <Button fx:id="btnTarjetaDelete" mnemonicParsing="false" text="Delete" />
+                  <Button fx:id="btnTarjetaDelete" mnemonicParsing="false" onAction="#deleteTarjeta" text="Delete" />
                </children>
                <opaqueInsets>
                   <Insets left="10.0" />
@@ -240,19 +225,19 @@
             </HBox>
             <HBox prefHeight="46.0" prefWidth="246.0">
                <children>
-                  <Button fx:id="btnTransaccionSave" mnemonicParsing="false" prefHeight="26.0" prefWidth="50.0" text="Save">
+                  <Button fx:id="btnTransaccionSave" mnemonicParsing="false" onAction="#addTransaccionFunction" prefHeight="26.0" prefWidth="50.0" text="Save">
                      <HBox.margin>
                         <Insets right="5.0" />
                      </HBox.margin></Button>
-                  <Button fx:id="btnTransaccionRead" mnemonicParsing="false" text="Read">
+                  <Button fx:id="btnTransaccionRead" mnemonicParsing="false" onAction="#showTransacciones" text="Read">
                      <HBox.margin>
                         <Insets right="5.0" />
                      </HBox.margin></Button>
-                  <Button fx:id="btnTransaccionUpdate" mnemonicParsing="false" text="Update">
+                  <Button fx:id="btnTransaccionUpdate" mnemonicParsing="false" onAction="#updateTransaccion" text="Update">
                      <HBox.margin>
                         <Insets right="5.0" />
                      </HBox.margin></Button>
-                  <Button fx:id="btnTransaccionDelete" mnemonicParsing="false" text="Delete" />
+                  <Button fx:id="btnTransaccionDelete" mnemonicParsing="false" onAction="#deleteTransaccion" text="Delete" />
                </children>
                <padding>
                   <Insets left="20.0" />
@@ -271,7 +256,65 @@
             <RadioButton fx:id="rdbtnAmericanExpress" mnemonicParsing="false" prefHeight="18.0" prefWidth="117.0" text="American Express" toggleGroup="$Facilitador" />
          </children>
       </VBox>
-      <TextField fx:id="fieldClienteID" layoutX="57.0" layoutY="213.0" prefHeight="26.0" prefWidth="162.0" />
-      <Label layoutX="11.0" layoutY="218.0" text="ID" />
+      <VBox layoutX="9.0" layoutY="316.0" prefHeight="346.0" prefWidth="712.0">
+         <children>
+              <TableView fx:id="tableViewCliente" onMouseClicked="#mouseClickedCliente" prefHeight="114.0" prefWidth="712.0">
+                  <columns>
+                      <TableColumn fx:id="colClienteID" prefWidth="32.79998779296875" text="id" />
+                      <TableColumn fx:id="colClienteNombre" prefWidth="175.20000839233398" text="nombre" />
+                      <TableColumn fx:id="colClienteDireccion" prefWidth="197.6000213623047" text="direccion" />
+                      <TableColumn fx:id="colClienteTelefono" prefWidth="292.0" text="telefono" />
+                  </columns>
+              </TableView>
+            <TableView fx:id="tableViewTransaccion" onMouseClicked="#mouseClickedTransaccion" prefHeight="121.0" prefWidth="100.0">
+               <columns>
+                  <TableColumn fx:id="colTransaccionID" prefWidth="32.79998779296875" text="id" />
+                  <TableColumn fx:id="colTransaccionDescripcion" prefWidth="146.39999389648438" text="descripcion" />
+                  <TableColumn fx:id="colTransaccionFecha" prefWidth="128.00001525878906" text="fecha_compra" />
+                  <TableColumn fx:id="colTransaccionMonto" prefWidth="145.5999755859375" text="monto" />
+                  <TableColumn fx:id="colTransaccionIDTarjeta" prefWidth="109.60003662109375" text="id_tarjeta" />
+                  <TableColumn fx:id="colTransaccionIDCliente" prefWidth="132.800048828125" text="id_cliente" />
+               </columns>
+               <VBox.margin>
+                  <Insets top="5.0" />
+               </VBox.margin>
+            </TableView>
+            <TableView fx:id="tableViewTarjeta" onMouseClicked="#mouseClickedTarjeta" prefHeight="114.0" prefWidth="700.0">
+               <columns>
+                  <TableColumn fx:id="colTarjetaID" prefWidth="32.79998779296875" text="id" />
+                  <TableColumn fx:id="colTarjetaNumero" prefWidth="146.39999389648438" text="numero" />
+                  <TableColumn fx:id="colTarjetaFechaExp" prefWidth="128.00001525878906" text="fecha" />
+                  <TableColumn fx:id="colTarjetaIDtipoTarjeta" prefWidth="145.5999755859375" text="id_tipo_tarjeta" />
+                  <TableColumn fx:id="colTarjetaIDtipoFacilitador" prefWidth="109.60003662109375" text="id_facilitador" />
+                  <TableColumn fx:id="colTarjetaIDCliente" prefWidth="133.60001220703123" text="id_cliente" />
+               </columns>
+               <VBox.margin>
+                  <Insets top="5.0" />
+               </VBox.margin>
+            </TableView>
+         </children>
+      </VBox>
+      <HBox layoutX="17.0" layoutY="230.0" prefHeight="40.0" prefWidth="712.0">
+         <children>
+            <Label text="ID">
+               <HBox.margin>
+                  <Insets right="10.0" />
+               </HBox.margin>
+            </Label>
+            <TextField fx:id="fieldClienteID" prefHeight="26.0" prefWidth="184.0" />
+            <Label text="ID">
+               <HBox.margin>
+                  <Insets left="40.0" right="10.0" />
+               </HBox.margin>
+            </Label>
+            <TextField fx:id="fieldTarjetaID" prefHeight="26.0" prefWidth="174.0" />
+            <Label text="ID">
+               <HBox.margin>
+                  <Insets left="50.0" right="10.0" />
+               </HBox.margin>
+            </Label>
+            <TextField fx:id="fieldTransaccionID" prefHeight="26.0" prefWidth="182.0" />
+         </children>
+      </HBox>
     </AnchorPane>
 </VBox>

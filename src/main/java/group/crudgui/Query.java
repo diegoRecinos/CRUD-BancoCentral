@@ -343,6 +343,7 @@ public class Query {
             ps.setDate(3,tarjeta.getFecha_expiracion());
             ps.setInt(4,tarjeta.getId_facilitador_tarjeta());
             ps.setInt(5,tarjeta.getId_cliente());
+            ps.setInt(6, tarjeta.getId());
 
             try{
                 int results = ps.executeUpdate();
@@ -464,6 +465,7 @@ public class Query {
             ps.setString(3,transaccion.getDescripcion());
             ps.setInt(4,transaccion.getId_tarjeta());
             ps.setInt(5,transaccion.getId_cliente());
+            ps.setInt(6,transaccion.getId());
 
             try{
                 int results = ps.executeUpdate();

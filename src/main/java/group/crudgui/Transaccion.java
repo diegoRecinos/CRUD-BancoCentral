@@ -19,6 +19,10 @@ public class Transaccion {
         this.id_cliente = id_cliente;
     }
 
+    public Transaccion() {
+
+    }
+
     public String getDescripcion() {
         return descripcion;
     }

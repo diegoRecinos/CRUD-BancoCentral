@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+
 import java.io.IOException;
 import java.sql.*;
 
@@ -15,7 +16,7 @@ public class BCNApplication extends Application {
         Scene scene = new Scene(fxmlLoader.load(), 320, 240);
         stage.setTitle("BCN");
         stage.setMinWidth(950);
-        stage.setMinHeight(650);
+        stage.setMinHeight(700);
         stage.setResizable(true);
         stage.setScene(scene);
         stage.show();
