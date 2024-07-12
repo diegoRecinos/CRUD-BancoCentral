@@ -27,3 +27,8 @@ WHERE
     t.id_cliente = @id_cliente
     AND YEAR(t.fecha_compra) = @anio
     AND MONTH(t.fecha_compra) = @mes;
+
+
+reporte C
+String queryCredito = "SELECT t.numero_tarjeta FROM Tarjeta t JOIN tipoTarjeta tt ON t.id_tipo_tarjeta = tt.id WHERE t.id_cliente = ? AND tt.nombre = 'Crédito'";
+String queryDebito = "SELECT t.numero_tarjeta FROM Tarjeta t JOIN tipoTarjeta tt ON t.id_tipo_tarjeta = tt.id WHERE t.id_cliente = ? AND tt.nombre = 'Débito'";
