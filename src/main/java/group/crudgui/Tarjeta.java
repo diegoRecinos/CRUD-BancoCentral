@@ -1,6 +1,7 @@
 package group.crudgui;
 
 import java.sql.Date;
+import java.time.LocalDate;
 
 public class Tarjeta {
     private int id;
@@ -8,8 +9,10 @@ public class Tarjeta {
     private int id_facilitador_tarjeta;
     private int id_cliente;
 
+    //private LocalDate fecha_expiracion;
     private String numero_tarjeta;
     private Date fecha_expiracion;
+
     public Tarjeta(){}
 
     public Tarjeta(int id, String numero_tarjeta, int id_tipo_tarjeta, Date fecha_expiracion, int id_facilitador_tarjeta, int id_cliente)
@@ -22,6 +25,15 @@ public class Tarjeta {
         this.numero_tarjeta = numero_tarjeta;
     }
 
+//    public Tarjeta(int id, String numero_tarjeta, int id_tipo_tarjeta, LocalDate fecha_expiracion, int id_facilitador_tarjeta, int id_cliente)
+//    {
+//        this.fecha_expiracion = Date.valueOf(fecha_expiracion);
+//        this.id = id;
+//        this.id_cliente = id_cliente;
+//        this.id_facilitador_tarjeta = id_facilitador_tarjeta;
+//        this.id_tipo_tarjeta = id_tipo_tarjeta;
+//        this.numero_tarjeta = numero_tarjeta;
+//    }
 
 
     public Date getFecha_expiracion() {

@@ -6,10 +6,19 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import java.time.ZoneId;
+import java.sql.Date;
 
 import java.net.URL;
-import java.util.Date;
+import java.time.LocalDate;
+
 import java.util.ResourceBundle;
+import java.sql.*;
+import java.sql.Date;
+import javafx.fxml.FXML;
+import javafx.scene.control.DatePicker;
+import java.time.LocalDate;
+
 
 public class BCNController implements Initializable {
     @FXML
@@ -313,45 +322,63 @@ public class BCNController implements Initializable {
         }
 
     }
-
+    //ps.setDate(2, java.sql.Date.valueOf(fechaExp));
     @FXML
     private void addTarjetaFunction()
     {
-        if (rdbtnCredito.isSelected() || rdbtnDebito.isSelected()) {
+        if (  (rdbtnCredito.isSelected() || rdbtnDebito.isSelected() )
+                && (rdbtnAmericanExpress.isSelected() || rdbtnVisa.isSelected() || rdbtnMasterCard.isSelected() ) ){
+
             Tarjeta tarjeta = new Tarjeta();
 
-            if (rdbtnCredito.isSelected())
-            {
+            LocalDate fecha_expiracion_LocalDate = dtpickerTarjetaExpire.getValue();
+
+            Date fecha_expiracion = Date.valueOf(fecha_expiracion_LocalDate);
+            tarjeta.setFecha_expiracion(fecha_expiracion);
+
+            if (rdbtnCredito.isSelected()) {
                 tarjeta.setId_tipo_tarjeta(1);
+
             }else{tarjeta.setId_tipo_tarjeta(2);}
 
-            tarjeta = new Tarjeta(Integer.parseInt(fieldTarjetaID.getText()), fieldTarjetaNumber.getText(), tarjeta.getId_tipo_tarjeta(), tarjeta.getFecha_expiracion(),tarjeta.getId_facilitador_tarjeta(), Integer.parseInt(fieldTarjetaIDCliente.getText()));
+            if (rdbtnVisa.isSelected()) {
+                tarjeta.setId_facilitador_tarjeta(1);
+
+            } else if (rdbtnMasterCard.isSelected()) {
+                tarjeta.setId_facilitador_tarjeta(2);
+
+            } else if (rdbtnAmericanExpress.isSelected()) {
+                tarjeta.setId_facilitador_tarjeta(3);
+            }
+
+            tarjeta = new Tarjeta(Integer.parseInt(fieldTarjetaID.getText()), fieldTarjetaNumber.getText(), tarjeta.getId_tipo_tarjeta(), tarjeta.getFecha_expiracion(), tarjeta.getId_facilitador_tarjeta(), Integer.parseInt(fieldTarjetaIDCliente.getText()));
             Query query = new Query();
             query.addTarjeta(tarjeta);
             showTarjetas();
+
         }else{
-            System.out.println("radioButtonNotSelected");
+            System.out.println("Datos tarjeta imcompletos");
         }
 
     }
-    @FXML
-    private void deleteTarjeta()
-    {
-        int clienteId = Integer.parseInt(fieldClienteID.getText());
-        Query query = new Query();
-        query.deleteCliente(clienteId);
-        showClientes();
-
-    }
-
-    @FXML
-    private void updateTarjetaFunction()
-    {
-        Cliente cliente = new Cliente(Integer.parseInt(fieldClienteID.getText()),fieldClienteName.getText(), fieldClienteAddress.getText(),fieldClienteTel.getText());
-        Query query = new Query();
-        query.updateCliente(cliente);
-        showClientes();
-    }
+//    @FXML
+//    private void deleteTarjeta()
+//    {
+//        int clienteId = Integer.parseInt(fieldClienteID.getText());
+//        Query query = new Query();
+//        query.deleteCliente(clienteId);
+//        showClientes();
+//
+//    }
+//
+//    @FXML
+//    private void updateTarjetaFunction()
+//    {
+//        Cliente cliente = new Cliente(Integer.parseInt(fieldClienteID.getText()),fieldClienteName.getText(), fieldClienteAddress.getText(),fieldClienteTel.getText());
+//        Query query = new Query();
+//        query.updateCliente(cliente);
+//        showClientes();
+//    }
 
 
 

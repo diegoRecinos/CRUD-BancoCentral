@@ -217,7 +217,7 @@
             </HBox>
             <HBox prefHeight="46.0" prefWidth="257.0">
                <children>
-                  <Button fx:id="btnTarjetaSave" mnemonicParsing="false" prefHeight="26.0" prefWidth="50.0" text="Save">
+                  <Button fx:id="btnTarjetaSave" mnemonicParsing="false" onAction="#addTarjetaFunction" prefHeight="26.0" prefWidth="50.0" text="Save">
                      <HBox.margin>
                         <Insets right="5.0" />
                      </HBox.margin></Button>

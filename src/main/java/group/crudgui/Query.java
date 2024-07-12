@@ -246,10 +246,11 @@ public class Query {
             Connection conn = databaseConnection.getConnection();
 
             PreparedStatement preparedStatement = conn.prepareStatement(query3);
-
+            //ps.setDate(2, Date.valueOf(fechaExp))
             preparedStatement.setInt(1, tarjeta.getId());
             preparedStatement.setString(2, tarjeta.getNumero_tarjeta());
             preparedStatement.setInt(3, tarjeta.getId_tipo_tarjeta());
+            //preparedStatement.setDate(4, Date.valueOf(fechaExp));
             preparedStatement.setDate(4, tarjeta.getFecha_expiracion());
             preparedStatement.setInt(5,tarjeta.getId_facilitador_tarjeta());
             preparedStatement.setInt(6,tarjeta.getId_cliente());
