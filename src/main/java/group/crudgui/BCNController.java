@@ -114,6 +114,13 @@ public class BCNController implements Initializable {
     public RadioButton rdbtnMasterCard;
     public RadioButton rdbtnVisa;
     public TextField fieldTransaccionIDCliente;
+    public Button btnReporteA;
+    public Button btnReporteB;
+    public Button btnReporteC;
+    public Button btnReporteD;
+    public DatePicker dtPickerInicio;
+    public DatePicker dtPickerFin;
+    public TextField fieldReporteAIDCliente;
     @FXML
     private Label welcomeText;
     private Tarjeta tarjeta;
@@ -520,5 +527,15 @@ public class BCNController implements Initializable {
     }
 
 
+    public void reporteA() {
+    Query query = new Query();
+    //Cliente cliente = new Cliente();
+    LocalDate fecha_inicio_LocalDate = dtPickerInicio.getValue();
+    LocalDate fecha_fin_localDate = dtPickerFin.getValue();
+    Date fecha_compra_inicio = Date.valueOf(fecha_inicio_LocalDate);
+    Date fecha_compra_fin = Date.valueOf(fecha_fin_localDate);
 
+    query.reporteA(Integer.parseInt(fieldReporteAIDCliente.getText()), fecha_compra_inicio, fecha_compra_fin);
+
+    }
 }

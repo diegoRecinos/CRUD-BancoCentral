@@ -3,7 +3,24 @@ package group.crudgui;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+import java.io.File;
+import java.io.IOException;
 import java.sql.*;
+import java.time.LocalDate;
+
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 
 public class Query {
 
@@ -470,7 +487,7 @@ public class Query {
             try{
                 int results = ps.executeUpdate();
                 System.out.println( results + " fila(s) afectada(s)");
-                //statement.executeQuery(query2);
+
             } catch (SQLException e){
                 e.printStackTrace();
             }
@@ -480,6 +497,119 @@ public class Query {
             e.printStackTrace();
         }
     }
+
+
+    public void reporteA(int idCliente , Date fecha_inicio, Date fecha_fin) {
+
+        try {
+            Connection conn = databaseConnection.getConnection();
+
+            //int idCliente = cliente.getId();
+//            LocalDate fechaInicio = LocalDate.of(2023, 1, 1); // Reemplaza con la fecha de inicio
+//            LocalDate fechaFin = LocalDate.of(2023, 12, 31); // Reemplaza con la fecha de fin
+
+            String query = "SELECT " +
+                    "t.id AS transaccion_id, " +
+                    "t.fecha_compra, " +
+                    "t.monto_total, " +
+                    "t.descripcion, " +
+                    "cl.nombre AS cliente_nombre, " +
+                    "cl.direccion AS cliente_direccion, " +
+                    "cl.telefono AS cliente_telefono " +
+                    "FROM Transaccion t " +
+                    "JOIN Cliente cl ON t.id_cliente = cl.id " +
+                    "WHERE t.id_cliente = ? " +
+                    "AND t.fecha_compra BETWEEN ? AND ? " +
+                    "ORDER BY t.fecha_compra";
+
+            PreparedStatement preparedStatement = conn.prepareStatement(query);
+
+            preparedStatement.setInt(1, idCliente);
+            preparedStatement.setDate(2, fecha_inicio);
+            preparedStatement.setDate(3, fecha_fin);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                int transaccionId = resultSet.getInt("transaccion_id");
+                Date fechaCompra = resultSet.getDate("fecha_compra");
+                double montoTotal = resultSet.getDouble("monto_total");
+                String descripcion = resultSet.getString("descripcion");
+                String clienteNombre = resultSet.getString("cliente_nombre");
+                String clienteDireccion = resultSet.getString("cliente_direccion");
+                String clienteTelefono = resultSet.getString("cliente_telefono");
+
+                System.out.println("ID Transacción: " + transaccionId);
+                System.out.println("Fecha de Compra: " + fechaCompra);
+                System.out.println("Monto Total: " + montoTotal);
+                System.out.println("Descripción: " + descripcion);
+                System.out.println("Nombre del Cliente: " + clienteNombre);
+                System.out.println("Dirección del Cliente: " + clienteDireccion);
+                System.out.println("Teléfono del Cliente: " + clienteTelefono);
+                System.out.println("---------------------------");
+            }
+
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd_HH-mm-ss");
+            String fechaHoraActual = LocalDateTime.now().format(formatter);
+
+            String pathname = "src\\main\\resources\\group\\crudgui\\Reportes";
+//            File file = new File(pathname);
+////            try {
+////                file.createNewFile();
+////            } catch (IOException e) {
+////                e.printStackTrace();
+////            }
+            // Crear el archivo de reporte
+
+            File reporte = new File(pathname, "Reporte_A_" + fechaHoraActual + ".txt");
+
+            try (BufferedWriter writer = new BufferedWriter(new FileWriter(reporte))) {
+                while (resultSet.next()) {
+                    int transaccionId = resultSet.getInt("transaccion_id");
+                    java.sql.Date fechaCompra = resultSet.getDate("fecha_compra");
+                    double montoTotal = resultSet.getDouble("monto_total");
+                    String descripcion = resultSet.getString("descripcion");
+                    String clienteNombre = resultSet.getString("cliente_nombre");
+                    String clienteDireccion = resultSet.getString("cliente_direccion");
+                    String clienteTelefono = resultSet.getString("cliente_telefono");
+
+                    writer.write("ID Transacción: " + transaccionId);
+                    writer.newLine();
+                    writer.write("Fecha de Compra: " + fechaCompra);
+                    writer.newLine();
+                    writer.write("Monto Total: " + montoTotal);
+                    writer.newLine();
+                    writer.write("Descripción: " + descripcion);
+                    writer.newLine();
+                    writer.write("Nombre del Cliente: " + clienteNombre);
+                    writer.newLine();
+                    writer.write("Dirección del Cliente: " + clienteDireccion);
+                    writer.newLine();
+                    writer.write("Teléfono del Cliente: " + clienteTelefono);
+                    writer.newLine();
+                    writer.write("---------------------------");
+                    writer.newLine();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+
+            conn.close();
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
+
+
+    }
+
+
+
+
 
 
 
