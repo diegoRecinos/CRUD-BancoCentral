@@ -1,0 +1,32 @@
+ID Transacción: 1
+Fecha de Compra: 2024-01-15
+Monto Total: 100.0
+Descripción: Compra en tienda de ropa
+Nombre del Cliente: Juan Sandoval
+Dirección del Cliente: Av. amazonas 742
+Teléfono del Cliente: 555-1234
+---------------------------
+ID Transacción: 4
+Fecha de Compra: 2024-04-01
+Monto Total: 20.0
+Descripción: papas
+Nombre del Cliente: Juan Sandoval
+Dirección del Cliente: Av. amazonas 742
+Teléfono del Cliente: 555-1234
+---------------------------
+ID Transacción: 5
+Fecha de Compra: 2024-04-17
+Monto Total: 207.0
+Descripción: ticket avion
+Nombre del Cliente: Juan Sandoval
+Dirección del Cliente: Av. amazonas 742
+Teléfono del Cliente: 555-1234
+---------------------------
+ID Transacción: 6
+Fecha de Compra: 2024-04-27
+Monto Total: 1000.0
+Descripción: pc gamer
+Nombre del Cliente: Juan Sandoval
+Dirección del Cliente: Av. amazonas 742
+Teléfono del Cliente: 555-1234
+---------------------------
