@@ -1,0 +1,4 @@
+ID_cliente: 1
+Mes: 4
+Año: 2024
+Total Gastado: 1227.0

@@ -10,6 +10,7 @@ import javafx.scene.input.MouseEvent;
 import java.sql.Date;
 
 import java.net.URL;
+import java.sql.SQLException;
 import java.time.LocalDate;
 
 import java.util.ResourceBundle;
@@ -121,6 +122,10 @@ public class BCNController implements Initializable {
     public DatePicker dtPickerInicio;
     public DatePicker dtPickerFin;
     public TextField fieldReporteAIDCliente;
+    public DatePicker dtPickerAnioReporteB;
+    public DatePicker dtPickerMesReporteB;
+    public TextField fieldReporteBID_Cliente;
+    public TextField fieldReporteCIDCliente;
     @FXML
     private Label welcomeText;
     private Tarjeta tarjeta;
@@ -529,13 +534,30 @@ public class BCNController implements Initializable {
 
     public void reporteA() {
     Query query = new Query();
-    //Cliente cliente = new Cliente();
+
     LocalDate fecha_inicio_LocalDate = dtPickerInicio.getValue();
     LocalDate fecha_fin_localDate = dtPickerFin.getValue();
     Date fecha_compra_inicio = Date.valueOf(fecha_inicio_LocalDate);
     Date fecha_compra_fin = Date.valueOf(fecha_fin_localDate);
 
-    query.reporteA(Integer.parseInt(fieldReporteAIDCliente.getText()), fecha_compra_inicio, fecha_compra_fin);
+    query.reporteAComprasRealizadas(Integer.parseInt(fieldReporteAIDCliente.getText()), fecha_compra_inicio, fecha_compra_fin);
 
     }
+
+    public void reporteB()
+    {
+        Query query = new Query();
+
+        LocalDate fecha = dtPickerMesReporteB.getValue();
+
+        query.reporteBGastosMes(Integer.parseInt(fieldReporteBID_Cliente.getText()) , fecha );
+    }
+
+    public void reporteC() throws SQLException {
+        Query query = new Query();
+        query.reporteCTarjetas(Integer.parseInt(fieldReporteCIDCliente.getText()));
+    }
+
+
+
 }

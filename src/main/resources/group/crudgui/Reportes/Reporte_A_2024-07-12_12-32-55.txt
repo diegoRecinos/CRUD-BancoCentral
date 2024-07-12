@@ -1,0 +1,8 @@
+ID Transacción: 2
+Fecha de Compra: 2024-02-20
+Monto Total: 50.5
+Descripción: Compra en supermercado
+Nombre del Cliente: Maria Rivera
+Dirección del Cliente: Calle rosa 123
+Teléfono del Cliente: 555-5678
+---------------------------

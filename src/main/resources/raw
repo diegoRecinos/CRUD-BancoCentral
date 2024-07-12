@@ -1,0 +1,30 @@
+reporte A
+SELECT
+    t.id AS transaccion_id,
+    t.fecha_compra,
+    t.monto_total,
+    t.descripcion,
+    cl.nombre AS cliente_nombre,
+    cl.direccion AS cliente_direccion,
+    cl.telefono AS cliente_telefono
+FROM
+    Transaccion t
+JOIN
+    Cliente cl ON t.id_cliente = cl.id
+WHERE
+    t.id_cliente = @id_cliente
+    AND t.fecha_compra BETWEEN @fecha_inicio AND @fecha_fin
+ORDER BY
+    t.fecha_compra;
+
+
+
+reporte B
+SELECT
+    SUM(t.monto_total) AS total_gastado
+FROM
+    Transaccion t
+WHERE
+    t.id_cliente = @id_cliente
+    AND YEAR(t.fecha_compra) = @anio
+    AND MONTH(t.fecha_compra) = @mes;
