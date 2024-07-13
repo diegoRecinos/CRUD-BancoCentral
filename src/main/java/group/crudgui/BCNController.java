@@ -6,6 +6,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.util.Callback;
 
 import java.sql.Date;
 
@@ -232,13 +233,42 @@ public class BCNController implements Initializable {
         Query query = new Query();
         ObservableList<Tarjeta> list = query.getTarjetaList();
         colTarjetaID.setCellValueFactory(new PropertyValueFactory<>("id"));
-        colTarjetaNumero.setCellValueFactory(new PropertyValueFactory<>("numero_tarjeta"));
+        // Usar el CellFactory personalizado para censurar los números de tarjeta
+
+        colTarjetaNumero.setCellFactory(new Callback<TableColumn<Tarjeta, String>, TableCell<Tarjeta, String>>() {
+            @Override
+            public TableCell<Tarjeta, String> call(TableColumn<Tarjeta, String> param) {
+                return new CensurarNumeroTarjetaCell();
+            }
+        });
+
+//        Query.censurarNumeroTarjeta(colTarjetaNumero.getCellFactory().toString());
+//
+//
+          colTarjetaNumero.setCellValueFactory(new PropertyValueFactory<>("numero_tarjeta"));
+//        Query.censurarNumeroTarjeta(colTarjetaNumero.getCellFactory().toString());
+//        colTarjetaNumero.setCellValueFactory(Query.censurarNumeroTarjetaTableView(colTarjetaNumero.getCellFactory().toString()));
+
         colTarjetaIDtipoTarjeta.setCellValueFactory(new PropertyValueFactory<>("id_tipo_tarjeta"));
         colTarjetaFechaExp.setCellValueFactory(new PropertyValueFactory<>("fecha_expiracion"));
         colTarjetaIDtipoFacilitador.setCellValueFactory(new PropertyValueFactory<>("id_facilitador_tarjeta"));
         colTarjetaIDCliente.setCellValueFactory(new PropertyValueFactory<>("id_cliente"));
 
         tableViewTarjeta.setItems(list);
+    }
+
+    public class CensurarNumeroTarjetaCell extends TableCell<Tarjeta, String> {
+        @Override
+        protected void updateItem(String item, boolean empty) {
+            super.updateItem(item, empty);
+            if (item == null || empty) {
+                setText(null);
+            } else {
+                // Censurar el número de tarjeta
+                String censoredNumber = "XXXX XXXX XXXX " + item.substring(item.length() - 4);
+                setText(censoredNumber);
+            }
+        }
     }
     
 

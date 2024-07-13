@@ -1,7 +1,10 @@
 package group.crudgui;
 
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.TableColumn;
+import javafx.util.Callback;
 
 import java.io.*;
 import java.sql.*;
@@ -704,6 +707,7 @@ public class Query {
             File reporte = new File(pathname, "Reporte_B_" + fechaHoraActual + ".txt");
 
             try (BufferedWriter writer = new BufferedWriter(new FileWriter(reporte))) {
+
                 if (resultSet.next()) {
                     double totalGastado = resultSet.getDouble("total_gastado");
                     writer.write("ID_cliente: " + id_cliente);
@@ -720,6 +724,7 @@ public class Query {
                     System.out.println("Año: " + fecha_especifica.getYear());
                     System.out.println("Total Gastado: " + totalGastado);
                 }
+
             } catch (IOException e) {
                 e.printStackTrace();
             } finally {
@@ -809,12 +814,14 @@ public class Query {
         }
     }
 
-        private String censurarNumeroTarjeta(String numeroTarjeta)
+        public static String censurarNumeroTarjeta(String numeroTarjeta)
         {
         if (numeroTarjeta == null || numeroTarjeta.length() < 4) {
             return "XXXX XXXX XXXX XXXX";
         }
         return "XXXX XXXX XXXX " + numeroTarjeta.substring(numeroTarjeta.length() - 4);
         }
+
+
 
 }

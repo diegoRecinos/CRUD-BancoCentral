@@ -1,0 +1,8 @@
+ID Transacción: 3
+Fecha de Compra: 2024-03-10
+Monto Total: 200.75
+Descripción: Compra de electrodomésticos
+Nombre del Cliente: Paola Villamariona
+Dirección del Cliente: Calle sol 456
+Teléfono del Cliente: 555-8765
+---------------------------
