@@ -1,0 +1,12 @@
+Clientes que han realizado compras con el facilitador de tarjeta: Visa
+----------------------------------------------------------------
+ID Cliente: 1
+Nombre Cliente: Juan Sandoval
+Cantidad de Compras: 4
+Total Gastado: 70.0
+----------------------------------------------------------------
+ID Cliente: 3
+Nombre Cliente: Paola Villamariona
+Cantidad de Compras: 2
+Total Gastado: 55.0
+----------------------------------------------------------------

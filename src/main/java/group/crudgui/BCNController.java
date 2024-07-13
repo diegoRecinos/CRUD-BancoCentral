@@ -127,6 +127,10 @@ public class BCNController implements Initializable {
     public DatePicker dtPickerMesReporteB;
     public TextField fieldReporteBID_Cliente;
     public TextField fieldReporteCIDCliente;
+    public RadioButton rdbtnReporteDVisa;
+    public ToggleGroup FacilitadorReporteD;
+    public RadioButton rdbtnReporteDMasterCard;
+    public RadioButton rdbtnReporteDAmericanExpress;
     @FXML
     private Label welcomeText;
     private Tarjeta tarjeta;
@@ -586,6 +590,23 @@ public class BCNController implements Initializable {
     public void reporteC() throws SQLException {
         Query query = new Query();
         query.reporteCTarjetas(Integer.parseInt(fieldReporteCIDCliente.getText()));
+    }
+
+    public void reporteD() throws SQLException
+    {
+        Query query = new Query();
+
+        String facilitador = "";
+        if (rdbtnReporteDVisa.isSelected())
+        {
+            facilitador = "Visa";
+        } else if (rdbtnMasterCard.isSelected()) {
+            facilitador = "MasterCard";
+        } else if (rdbtnAmericanExpress.isSelected()) {
+            facilitador = "American Express";
+        }
+
+        query.reporteDgenerarReporteClientesPorFacilitador(facilitador);
     }
 
 

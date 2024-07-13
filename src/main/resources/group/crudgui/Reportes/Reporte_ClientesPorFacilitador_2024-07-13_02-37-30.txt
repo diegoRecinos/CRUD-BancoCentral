@@ -1,0 +1,7 @@
+Clientes que han realizado compras con el facilitador de tarjeta: MasterCard
+----------------------------------------------------------------
+ID Cliente: 3
+Nombre Cliente: Paola Villamariona
+Cantidad de Compras: 2
+Total Gastado: 166.0
+----------------------------------------------------------------

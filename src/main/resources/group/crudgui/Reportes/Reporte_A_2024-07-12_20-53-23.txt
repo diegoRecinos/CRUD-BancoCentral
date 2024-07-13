@@ -1,0 +1,16 @@
+ID Transacción: 5
+Fecha de Compra: 2024-07-12
+Monto Total: 1.25
+Descripción: maruchan
+Nombre del Cliente: andrea gabriela recinos
+Dirección del Cliente: address
+Teléfono del Cliente: 75220746
+---------------------------
+ID Transacción: 6
+Fecha de Compra: 2024-07-12
+Monto Total: 0.98
+Descripción: comida para charlie
+Nombre del Cliente: andrea gabriela recinos
+Dirección del Cliente: address
+Teléfono del Cliente: 75220746
+---------------------------

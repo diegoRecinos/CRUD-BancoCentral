@@ -669,12 +669,6 @@ public class Query {
 
             String queryNombreCliente = "select Cliente.nombre from Cliente where Cliente.id = ?";
 
-//            String insertSQL2 = "UPDATE Cliente " +
-//                    "SET nombre = ?," +
-//                    " direccion = ?," +
-//                    " telefono = ?" +
-//                    "WHERE id = ?;";
-
             try {
                 PreparedStatement ps = conn.prepareStatement(queryNombreCliente);
 
@@ -685,7 +679,6 @@ public class Query {
             } catch (SQLException e) {
                 e.printStackTrace();
             }
-
 
             PreparedStatement preparedStatement = conn.prepareStatement(query);
             preparedStatement.setInt(1, id_cliente);
@@ -822,6 +815,87 @@ public class Query {
         return "XXXX XXXX XXXX " + numeroTarjeta.substring(numeroTarjeta.length() - 4);
         }
 
+    public void reporteDgenerarReporteClientesPorFacilitador(String facilitador) throws SQLException {
 
+        String query = "SELECT " +
+                "c.id AS cliente_id, " +
+                "c.nombre AS cliente_nombre, " +
+                "COUNT(t.id) AS cantidad_compras, " +
+                "SUM(t.monto_total) AS total_gastado " +
+                "FROM Cliente c " +
+                "JOIN Tarjeta ta ON c.id = ta.id_cliente " +
+                "JOIN Transaccion t ON ta.id = t.id_tarjeta " +
+                "JOIN FacilitadorTarjeta ft ON ta.id_facilitador_tarjeta = ft.id " +
+                "WHERE ft.nombre = ? " +
+                "GROUP BY c.id, c.nombre " +
+                "ORDER BY total_gastado DESC";
 
+        try
+        {
+             Connection conn = databaseConnection.getConnection();
+
+             PreparedStatement preparedStatement = conn.prepareStatement(query);
+
+            // Configurar el parámetro de la consulta
+            preparedStatement.setString(1, facilitador);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd_HH-mm-ss");
+            String fechaHoraActual = LocalDateTime.now().format(formatter);
+
+            String pathname = "src\\main\\resources\\group\\crudgui\\Reportes";
+            File reportesDir = new File(pathname);
+
+            if (!reportesDir.exists()) {
+                reportesDir.mkdirs();
+            }
+
+            File reporte = new File(reportesDir, "ReporteD_ClientesPorFacilitador_" + fechaHoraActual + ".txt");
+
+            try (BufferedWriter writer = new BufferedWriter(new FileWriter(reporte)))
+            {
+                writer.write("Clientes que han realizado compras con el facilitador de tarjeta: " + facilitador);
+                writer.newLine();
+                writer.write("----------------------------------------------------------------");
+                writer.newLine();
+
+                while (resultSet.next())
+                {
+                    int clienteId = resultSet.getInt("cliente_id");
+                    String clienteNombre = resultSet.getString("cliente_nombre");
+                    int cantidadCompras = resultSet.getInt("cantidad_compras");
+                    double totalGastado = resultSet.getDouble("total_gastado");
+
+                    writer.write("ID Cliente: " + clienteId);
+                    writer.newLine();
+                    writer.write("Nombre Cliente: " + clienteNombre);
+                    writer.newLine();
+                    writer.write("Cantidad de Compras: " + cantidadCompras);
+                    writer.newLine();
+                    writer.write("Total Gastado: " + totalGastado);
+                    writer.newLine();
+                    writer.write("----------------------------------------------------------------");
+                    writer.newLine();
+
+                    System.out.println("ID Cliente: " + clienteId);
+                    System.out.println("Nombre Cliente: " + clienteNombre);
+                    System.out.println("Cantidad de Compras: " + cantidadCompras);
+                    System.out.println("Total Gastado: " + totalGastado);
+                    System.out.println("----------------------------------------------------------------");
+                }
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            } finally {
+                resultSet.close();
+                preparedStatement.close();
+                conn.close();
+            }
+
+        } catch (SQLException ex)
+        {
+            ex.printStackTrace();
+        }
+    }
 }
