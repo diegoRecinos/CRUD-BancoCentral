@@ -468,10 +468,10 @@ public class Query {
             String insertSQL2 = "UPDATE Transaccion " +
                     "SET fecha_compra = ?," +
                     " monto_total = ?," +
-                    " descripcion = ?" +
-                    " id_tarjeta + ?" +
-                    " id_cliente = ?" +
-                    "WHERE id = ?;";
+                    " descripcion = ?, " +
+                    " id_tarjeta = ?, " +
+                    " id_cliente = ? " +
+                    "WHERE id = ?; ";
 
             PreparedStatement ps = conn.prepareStatement(insertSQL2);
 
