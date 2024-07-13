@@ -1,5 +1,7 @@
 package group.crudgui;
 
+/*No se esta usando la clase se uso solo como ejemplo*/
+
 public class Student {
     private int id;
     private String firstName;

@@ -346,9 +346,9 @@ public class Query {
             String insertSQL2 = "UPDATE Tarjeta " +
                     "SET numero_tarjeta = ?," +
                     " id_tipo_tarjeta = ?," +
-                    " fecha_expiracion = ?" +
-                    " id_facilitador_tarjeta" +
-                    " id_cliente" +
+                    " fecha_expiracion = ?," +
+                    " id_facilitador_tarjeta = ?," +
+                    " id_cliente = ?" +
                     "WHERE id = ?;";
 
             PreparedStatement ps = conn.prepareStatement(insertSQL2);
@@ -363,7 +363,7 @@ public class Query {
             try{
                 int results = ps.executeUpdate();
                 System.out.println( results + " fila(s) afectada(s)");
-                //statement.executeQuery(query2);
+
             } catch (SQLException e){
                 e.printStackTrace();
             }
@@ -469,8 +469,8 @@ public class Query {
                     "SET fecha_compra = ?," +
                     " monto_total = ?," +
                     " descripcion = ?" +
-                    " id_tarjeta" +
-                    " id_cliente" +
+                    " id_tarjeta + ?" +
+                    " id_cliente = ?" +
                     "WHERE id = ?;";
 
             PreparedStatement ps = conn.prepareStatement(insertSQL2);
