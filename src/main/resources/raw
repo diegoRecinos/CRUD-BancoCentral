@@ -1,4 +1,4 @@
-reporte A
+------------------------------------------------------------------------------reporte A
 SELECT
     t.id AS transaccion_id,
     t.fecha_compra,
@@ -17,8 +17,23 @@ WHERE
 ORDER BY
     t.fecha_compra;
 
+String query = "SELECT " +
+                            "t.id AS transaccion_id, " +
+                            "t.fecha_compra, " +
+                            "t.monto_total, " +
+                            "t.descripcion, " +
+                            "cl.nombre AS cliente_nombre, " +
+                            "cl.direccion AS cliente_direccion, " +
+                            "cl.telefono AS cliente_telefono " +
 
-reporte B
+                            "FROM Transaccion t " +
+                            "JOIN Cliente cl ON t.id_cliente = cl.id " +
+                            "WHERE t.id_cliente = ? " +
+                            "AND t.fecha_compra BETWEEN ? AND ? " +
+                            "ORDER BY t.fecha_compra";
+
+------------------------------------------------------------------------------reporte B
+
 SELECT
     SUM(t.monto_total) AS total_gastado
 FROM
@@ -28,7 +43,41 @@ WHERE
     AND YEAR(t.fecha_compra) = @anio
     AND MONTH(t.fecha_compra) = @mes;
 
+---------------------------------------------------------------------------------reporte C
 
-reporte C
 String queryCredito = "SELECT t.numero_tarjeta FROM Tarjeta t JOIN tipoTarjeta tt ON t.id_tipo_tarjeta = tt.id WHERE t.id_cliente = ? AND tt.nombre = 'Crédito'";
 String queryDebito = "SELECT t.numero_tarjeta FROM Tarjeta t JOIN tipoTarjeta tt ON t.id_tipo_tarjeta = tt.id WHERE t.id_cliente = ? AND tt.nombre = 'Débito'";
+
+
+---------------------------------------------------------------------------------reporte D
+
+"SELECT " +
+"c.id AS cliente_id, " +
+"c.nombre AS cliente_nombre, " +
+"COUNT(t.id) AS cantidad_compras, " +
+"SUM(t.monto_total) AS total_gastado " +
+"FROM Cliente c " +
+"JOIN Tarjeta ta ON c.id = ta.id_cliente " +
+"JOIN Transaccion t ON ta.id = t.id_tarjeta " +
+"JOIN FacilitadorTarjeta ft ON ta.id_facilitador_tarjeta = ft.id " +
+"WHERE ft.nombre = ? " +
+"GROUP BY c.id, c.nombre " +
+"ORDER BY total_gastado DESC";
+
+
+/*retrieving transacciones, nombres, descripciones y tipo de facilitador */
+select
+	Cliente.id,
+	Cliente.nombre,
+	Tarjeta.numero_tarjeta,
+	Transaccion.descripcion,
+	FacilitadorTarjeta.nombre
+
+from
+	Cliente
+	INNER JOIN Tarjeta on Tarjeta.id = Cliente.id
+	INNER JOIN Transaccion on Tarjeta.id = Transaccion.id_tarjeta
+	INNER JOIN FacilitadorTarjeta on Tarjeta.id_facilitador_tarjeta = FacilitadorTarjeta.id
+	WHERE FacilitadorTarjeta.id = 1;
+
+/*

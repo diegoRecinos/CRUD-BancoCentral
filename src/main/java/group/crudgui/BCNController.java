@@ -1,17 +1,21 @@
 package group.crudgui;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 import javafx.util.Callback;
 
-import java.sql.Date;
+import java.sql.*;
 
 import java.net.URL;
-import java.sql.SQLException;
 import java.time.LocalDate;
 
 import java.util.ResourceBundle;
@@ -131,6 +135,16 @@ public class BCNController implements Initializable {
     public ToggleGroup FacilitadorReporteD;
     public RadioButton rdbtnReporteDMasterCard;
     public RadioButton rdbtnReporteDAmericanExpress;
+    public Button btnPageII;
+    public Button btnPageI;
+    public Button btnStatement;
+    public TableView TableViewStatement;
+    public TextField fieldStatementID;
+    public TableColumn colIDTableViewStatement;
+    public TableColumn colNOMBRETableViewStatement;
+    public TableColumn colTARJETANOTableViewStatement;
+    public TableColumn colDESCRIPTableViewStatement;
+    public TableColumn colFacilitadorTableViewStatement;
     @FXML
     private Label welcomeText;
     private Tarjeta tarjeta;
@@ -138,6 +152,12 @@ public class BCNController implements Initializable {
 //    //private ComboBox<Facilitador> facilitador;
 //    @FXML
 //    private DatePicker dpFechaExp;
+
+    private Stage stage; //Stage para generar la ventana
+    private Scene scene; //Escena que carga dentro de la ventana de Stage
+    private Parent root; // Almacena todos los Children de la escena
+
+
 
     @FXML
     protected void onHelloButtonClick() {
@@ -169,7 +189,7 @@ public class BCNController implements Initializable {
 
 
     @FXML
-    private TableView<Student> tableView;
+    private TableView<StatementRecord> tableView;
 
     @FXML
     private TableColumn<Student, Integer> columnID;
@@ -183,13 +203,24 @@ public class BCNController implements Initializable {
     @FXML
     private TableColumn<Student, String> colLastName;
 
+
+
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-//        showStudents();
+//      showStudents();
         showClientes();
         showTarjetas();
         showTransacciones();
+
+        colIDTableViewStatement.setCellValueFactory(new PropertyValueFactory<>("id"));
+        colNOMBRETableViewStatement.setCellValueFactory(new PropertyValueFactory<>("nombre"));
+        colTarjetaNumero.setCellValueFactory(new PropertyValueFactory<>("numero_tarjeta"));
+        colDESCRIPTableViewStatement.setCellValueFactory(new PropertyValueFactory<>("descripcion"));
+        colFacilitadorTableViewStatement.setCellValueFactory(new PropertyValueFactory<>("facilitador"));
+
     }
+
 
 //    @FXML
 //    private void showStudents()
@@ -259,6 +290,9 @@ public class BCNController implements Initializable {
         colTarjetaIDCliente.setCellValueFactory(new PropertyValueFactory<>("id_cliente"));
 
         tableViewTarjeta.setItems(list);
+    }
+
+    public void cambiarEscena(ActionEvent event) {
     }
 
     public class CensurarNumeroTarjetaCell extends TableCell<Tarjeta, String> {
@@ -610,5 +644,19 @@ public class BCNController implements Initializable {
     }
 
 
+    public void statement() throws SQLException {
+        Query query = new Query();
+        query.generateStatement(Integer.parseInt(fieldStatementID.getText()));
+
+        ObservableList<StatementRecord> list = query.getList();
+
+        colIDTableViewStatement.setCellValueFactory(new PropertyValueFactory<>("id"));
+        colNOMBRETableViewStatement.setCellValueFactory(new PropertyValueFactory<>("nombre"));
+        colTARJETANOTableViewStatement.setCellValueFactory(new PropertyValueFactory<>("numero_tarjeta"));
+        colDESCRIPTableViewStatement.setCellValueFactory(new PropertyValueFactory<>("descripcion"));
+        colFacilitadorTableViewStatement.setCellValueFactory(new PropertyValueFactory<>("facilitador"));
+
+        TableViewStatement.setItems(list);
+    }
 
 }

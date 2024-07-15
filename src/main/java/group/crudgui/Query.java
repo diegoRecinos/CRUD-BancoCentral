@@ -1,10 +1,10 @@
 package group.crudgui;
 
-import javafx.beans.value.ObservableValue;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.control.TableColumn;
-import javafx.util.Callback;
+import javafx.fxml.FXML;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.io.*;
 import java.sql.*;
@@ -510,6 +510,7 @@ public class Query {
                             "cl.nombre AS cliente_nombre, " +
                             "cl.direccion AS cliente_direccion, " +
                             "cl.telefono AS cliente_telefono " +
+
                             "FROM Transaccion t " +
                             "JOIN Cliente cl ON t.id_cliente = cl.id " +
                             "WHERE t.id_cliente = ? " +
@@ -587,74 +588,6 @@ public class Query {
                 }
 
         }
-
-//    public void reporteB(int id_cliente, Date fecha_mes_especifico, Date fecha_anio_especifico)
-//    {
-//        try {
-//            Connection conn = databaseConnection.getConnection();
-//
-//            String query = "SELECT " +
-//                    "SUM(t.monto_total) AS total_gastado " +
-//                    "FROM Transaccion t " +
-//                    "WHERE t.id_cliente = ? " +
-//                    "AND YEAR(t.fecha_compra) = ? " +
-//                    "AND MONTH(t.fecha_compra) = ?";
-//
-//            PreparedStatement preparedStatement = conn.prepareStatement(query);
-//            preparedStatement.setInt(1, id_cliente);
-//            preparedStatement.setDate(2, fecha_mes_especifico);
-//            preparedStatement.setDate(3, fecha_anio_especifico);
-//
-//            ResultSet resultSet = preparedStatement.executeQuery();
-//
-//            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd_HH-mm-ss");
-//            String fechaHoraActual = LocalDateTime.now().format(formatter);
-//
-//            String pathname = "src\\main\\resources\\group\\crudgui\\Reportes";
-//            File reportesDir = new File(pathname);
-//
-//            if (!reportesDir.exists()) {
-//                reportesDir.mkdirs();
-//            }
-//
-//            File reporte = new File(reportesDir, "Reporte_B_" + fechaHoraActual + ".txt");
-//
-//            try (BufferedWriter writer = new BufferedWriter(new FileWriter(reporte))) {
-//
-//                while (resultSet.next()) {
-//
-//                    int cliente_id = resultSet.getInt("id_cliente");
-//                    Date anio = resultSet.getDate("fecha_compra");
-//                    Date mes = resultSet.getDate("fecha_mes_especifico");
-//
-//
-//                    writer.write("ID_cliente: "+ cliente_id);
-//                    writer.newLine();
-//                    writer.write("Mes: " + mes);
-//                    writer.newLine();
-//                    writer.write("Anio: "+ anio );
-//                    writer.newLine();
-//
-//                    System.out.println("ID_cliente: "+ cliente_id);
-//                    System.out.println("Mes: " + mes);
-//                    System.out.println("Anio: "+ anio );
-//
-//
-//                }
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            } finally {
-//                resultSet.close();
-//                preparedStatement.close();
-//                conn.close();
-//            }
-//
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//    }
 
     public void reporteBGastosMes(int id_cliente, LocalDate fecha_especifica) {
         try {
@@ -898,4 +831,124 @@ public class Query {
             ex.printStackTrace();
         }
     }
+
+
+//    public void generateStatement(int id) throws SQLException {
+//        Connection conn = databaseConnection.getConnection();
+//
+//        String query =
+//                "select" +
+//                        "Cliente.id," +
+//                        "Cliente.nombre," +
+//                        "Tarjeta.numero_tarjeta," +
+//                        "Transaccion.descripcion," +
+//                        "FacilitadorTarjeta.nombre" +
+//
+//                "from" +
+//
+//                        "Cliente" +
+//                        "INNER JOIN Tarjeta on Tarjeta.id = Cliente.id" +
+//                        "INNER JOIN Transaccion on Tarjeta.id = Transaccion.id_tarjeta" +
+//                        "INNER JOIN FacilitadorTarjeta on Tarjeta.id_facilitador_tarjeta = FacilitadorTarjeta.id" +
+//                        "WHERE  FacilitadorTarjeta.id = ?";
+//
+//        PreparedStatement preparedStatement = conn.prepareStatement(query);
+//
+//        preparedStatement.setInt(1, id);
+//
+//        ResultSet resultSet = preparedStatement.executeQuery();
+//
+//        conn.close();
+//
+//
+//    }
+
+//    public void generateStatement(int id) throws SQLException {
+//        Connection conn = databaseConnection.getConnection();
+//
+//        String query =
+//                "SELECT " +
+//                        "Cliente.id, " +
+//                        "Cliente.nombre, " +
+//                        "Tarjeta.numero_tarjeta, " +
+//                        "Transaccion.descripcion, " +
+//                        "FacilitadorTarjeta.nombre " +
+//                        "FROM " +
+//                        "Cliente " +
+//                        "INNER JOIN Tarjeta ON Tarjeta.id = Cliente.id " +
+//                        "INNER JOIN Transaccion ON Tarjeta.id = Transaccion.id_tarjeta " +
+//                        "INNER JOIN FacilitadorTarjeta ON Tarjeta.id_facilitador_tarjeta = FacilitadorTarjeta.id " +
+//                        "WHERE FacilitadorTarjeta.id = ?";
+//
+//        PreparedStatement preparedStatement = conn.prepareStatement(query);
+//        preparedStatement.setInt(1, id);
+//        ResultSet resultSet = preparedStatement.executeQuery();
+//
+//        ObservableList<StatementRecord> data = FXCollections.observableArrayList();
+//
+//        while (resultSet.next()) {
+//            int recordId = resultSet.getInt("id");
+//            String nombre = resultSet.getString("nombre");
+//            String numeroTarjeta = resultSet.getString("numero_tarjeta");
+//            String descripcion = resultSet.getString("descripcion");
+//            String facilitador = resultSet.getString("nombre");
+//
+//            data.add(new StatementRecord(recordId, nombre, numeroTarjeta, descripcion, facilitador));
+//        }
+//
+//        conn.close();
+//
+//        //return data;
+//
+//        tableView.setItems(data);
+//    }
+
+    private ObservableList<StatementRecord> data;
+
+    public Query() {
+        data = FXCollections.observableArrayList();
+    }
+
+    public ObservableList<StatementRecord> getList() {
+        return data;
+    }
+
+    public void generateStatement(int id) throws SQLException {
+        Connection conn = databaseConnection.getConnection();
+
+        String query =
+                "SELECT " +
+                        "Cliente.id, " +
+                        "Cliente.nombre, " +
+                        "Tarjeta.numero_tarjeta as 'numero_tarjeta', " +
+                        "Transaccion.descripcion, " +
+                        "FacilitadorTarjeta.nombre as 'facilitador' " +
+                        "FROM " +
+                        "Cliente " +
+                        "INNER JOIN Tarjeta ON Tarjeta.id = Cliente.id " +
+                        "INNER JOIN Transaccion ON Tarjeta.id = Transaccion.id_tarjeta " +
+                        "INNER JOIN FacilitadorTarjeta ON Tarjeta.id_facilitador_tarjeta = FacilitadorTarjeta.id " +
+                        "WHERE FacilitadorTarjeta.id = ?";
+
+        PreparedStatement preparedStatement = conn.prepareStatement(query);
+        preparedStatement.setInt(1, id);
+        ResultSet resultSet = preparedStatement.executeQuery();
+
+        data.clear(); // Clear previous data
+
+        while (resultSet.next()) {
+            int recordId = resultSet.getInt("id");
+            String nombre = resultSet.getString("nombre");
+            String numeroTarjeta = resultSet.getString("numero_tarjeta");
+            String descripcion = resultSet.getString("descripcion");
+            String facilitador = resultSet.getString(   "facilitador");
+
+            data.add(new StatementRecord(recordId, nombre, numeroTarjeta, descripcion, facilitador));
+        }
+
+        conn.close();
+    }
+
+
+
 }
