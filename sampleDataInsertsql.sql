@@ -1,10 +1,10 @@
-    -- Insert data into tipoTarjeta
+
 INSERT INTO tipoTarjeta (id, nombre)
 VALUES 
 (1, 'Credito'),
 (2, 'Debito');
 
--- Insert data into FacilitadorTarjeta
+
 INSERT INTO FacilitadorTarjeta (id, nombre)
 VALUES 
 (1, 'Visa'),
@@ -12,7 +12,7 @@ VALUES
 (3, 'American Express');
 
 
--- Insert data into Transaccion
+
 INSERT INTO Transaccion (id, fecha_compra, monto_total, descripcion, id_tarjeta, id_cliente)
 VALUES 
 (1, '2024-01-15', 100.00, 'Compra en tienda de ropa', 1, 1),
@@ -21,7 +21,7 @@ VALUES
 
 
 
--- Insert data into Cliente
+
 INSERT INTO Cliente (id, nombre, direccion, telefono)
 VALUES 
 (1, 'Juan Sandoval', 'Av. amazonas 742', '555-1234'),
@@ -30,7 +30,6 @@ VALUES
 
 
 
--- Insert data into Tarjeta
 INSERT INTO Tarjeta (id, numero_tarjeta, id_tipo_tarjeta, fecha_expiracion, id_facilitador_tarjeta, id_cliente)
 VALUES 
 (1, '1234567812345678', 1, '2025-12-31', 1, 1),

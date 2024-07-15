@@ -145,6 +145,10 @@ public class BCNController implements Initializable {
     public TableColumn colTARJETANOTableViewStatement;
     public TableColumn colDESCRIPTableViewStatement;
     public TableColumn colFacilitadorTableViewStatement;
+    public RadioButton rdbtnStatementVisa1;
+    public ToggleGroup FacilitadorReporteD1;
+    public RadioButton rdbtnStatementMasterCard2;
+    public RadioButton rdbtnStatementAmericanExpress3;
     @FXML
     private Label welcomeText;
     private Tarjeta tarjeta;
@@ -646,7 +650,18 @@ public class BCNController implements Initializable {
 
     public void statement() throws SQLException {
         Query query = new Query();
+
+        if (rdbtnStatementVisa1.isSelected())
+        {
+            fieldStatementID.setText("1");
+        } else if (rdbtnStatementMasterCard2.isSelected()) {
+            fieldStatementID.setText("2");
+        } else if (rdbtnStatementAmericanExpress3.isSelected()) {
+            fieldStatementID.setText("3");
+        }
+
         query.generateStatement(Integer.parseInt(fieldStatementID.getText()));
+
 
         ObservableList<StatementRecord> list = query.getList();
 

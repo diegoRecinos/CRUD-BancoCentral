@@ -25,7 +25,8 @@ CREATE TABLE Tarjeta (
     id INT PRIMARY KEY,
     numero_tarjeta VARCHAR(20) NOT NULL,
     id_tipo_tarjeta INT,
-    fecha_expiracion DATE NOT NULL,
+    fecha_expiracion DATE NOT NULL,++++++++++++++++++++++
+    +
     id_facilitador_tarjeta INT,
     id_cliente INT,
     FOREIGN KEY (id_tipo_tarjeta) REFERENCES tipoTarjeta(id),
