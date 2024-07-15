@@ -833,76 +833,6 @@ public class Query {
     }
 
 
-//    public void generateStatement(int id) throws SQLException {
-//        Connection conn = databaseConnection.getConnection();
-//
-//        String query =
-//                "select" +
-//                        "Cliente.id," +
-//                        "Cliente.nombre," +
-//                        "Tarjeta.numero_tarjeta," +
-//                        "Transaccion.descripcion," +
-//                        "FacilitadorTarjeta.nombre" +
-//
-//                "from" +
-//
-//                        "Cliente" +
-//                        "INNER JOIN Tarjeta on Tarjeta.id = Cliente.id" +
-//                        "INNER JOIN Transaccion on Tarjeta.id = Transaccion.id_tarjeta" +
-//                        "INNER JOIN FacilitadorTarjeta on Tarjeta.id_facilitador_tarjeta = FacilitadorTarjeta.id" +
-//                        "WHERE  FacilitadorTarjeta.id = ?";
-//
-//        PreparedStatement preparedStatement = conn.prepareStatement(query);
-//
-//        preparedStatement.setInt(1, id);
-//
-//        ResultSet resultSet = preparedStatement.executeQuery();
-//
-//        conn.close();
-//
-//
-//    }
-
-//    public void generateStatement(int id) throws SQLException {
-//        Connection conn = databaseConnection.getConnection();
-//
-//        String query =
-//                "SELECT " +
-//                        "Cliente.id, " +
-//                        "Cliente.nombre, " +
-//                        "Tarjeta.numero_tarjeta, " +
-//                        "Transaccion.descripcion, " +
-//                        "FacilitadorTarjeta.nombre " +
-//                        "FROM " +
-//                        "Cliente " +
-//                        "INNER JOIN Tarjeta ON Tarjeta.id = Cliente.id " +
-//                        "INNER JOIN Transaccion ON Tarjeta.id = Transaccion.id_tarjeta " +
-//                        "INNER JOIN FacilitadorTarjeta ON Tarjeta.id_facilitador_tarjeta = FacilitadorTarjeta.id " +
-//                        "WHERE FacilitadorTarjeta.id = ?";
-//
-//        PreparedStatement preparedStatement = conn.prepareStatement(query);
-//        preparedStatement.setInt(1, id);
-//        ResultSet resultSet = preparedStatement.executeQuery();
-//
-//        ObservableList<StatementRecord> data = FXCollections.observableArrayList();
-//
-//        while (resultSet.next()) {
-//            int recordId = resultSet.getInt("id");
-//            String nombre = resultSet.getString("nombre");
-//            String numeroTarjeta = resultSet.getString("numero_tarjeta");
-//            String descripcion = resultSet.getString("descripcion");
-//            String facilitador = resultSet.getString("nombre");
-//
-//            data.add(new StatementRecord(recordId, nombre, numeroTarjeta, descripcion, facilitador));
-//        }
-//
-//        conn.close();
-//
-//        //return data;
-//
-//        tableView.setItems(data);
-//    }
-
     private ObservableList<StatementRecord> data;
 
     public Query() {
@@ -920,7 +850,7 @@ public class Query {
                 "SELECT " +
                         "Cliente.id, " +
                         "Cliente.nombre, " +
-                        "Tarjeta.numero_tarjeta as 'numero_tarjeta', " +
+                        "Tarjeta.numero_tarjeta as 'tarjeta', " +
                         "Transaccion.descripcion, " +
                         "FacilitadorTarjeta.nombre as 'facilitador' " +
                         "FROM " +
@@ -939,7 +869,7 @@ public class Query {
         while (resultSet.next()) {
             int recordId = resultSet.getInt("id");
             String nombre = resultSet.getString("nombre");
-            String numeroTarjeta = resultSet.getString("numero_tarjeta");
+            String numeroTarjeta = resultSet.getString("tarjeta");
             String descripcion = resultSet.getString("descripcion");
             String facilitador = resultSet.getString(   "facilitador");
 

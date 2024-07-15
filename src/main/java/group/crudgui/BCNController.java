@@ -652,7 +652,7 @@ public class BCNController implements Initializable {
 
         colIDTableViewStatement.setCellValueFactory(new PropertyValueFactory<>("id"));
         colNOMBRETableViewStatement.setCellValueFactory(new PropertyValueFactory<>("nombre"));
-        colTARJETANOTableViewStatement.setCellValueFactory(new PropertyValueFactory<>("numero_tarjeta"));
+        colTARJETANOTableViewStatement.setCellValueFactory(new PropertyValueFactory<>("numeroTarjeta"));
         colDESCRIPTableViewStatement.setCellValueFactory(new PropertyValueFactory<>("descripcion"));
         colFacilitadorTableViewStatement.setCellValueFactory(new PropertyValueFactory<>("facilitador"));
 
