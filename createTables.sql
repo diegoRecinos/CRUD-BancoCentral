@@ -14,7 +14,7 @@ CREATE TABLE Cliente (
     id INT PRIMARY KEY,
     nombre VARCHAR(50) NOT NULL,
     direccion VARCHAR(100) NOT NULL,
-    telefono VARCHAR(50),
+    telefono VARCHAR(50)
     
 );
 
