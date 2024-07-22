@@ -12,10 +12,15 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Objects;
 
 public class SecondController {
+
+    private Parent root;
+    private Stage stage;
+    private Scene scene;
 
 
     public TextField fieldStatementIDPageTwo;
@@ -32,20 +37,6 @@ public class SecondController {
     public TableColumn colIDTableViewStatementPageTwo;
     public TableView tableViewStatementPageTwo;
 
-    @FXML
-    private void handleButtonAction(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(BCNApplication.class.getResource("hello-view.fxml") ) ;
-        Scene scene = new Scene(root);
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
-        stage.setTitle("BCN-page-one");
-        stage.setMinHeight(700);
-        stage.setMinWidth(1400);
-        stage.setResizable(true);
-        stage.setScene(scene);
-        stage.show();
-
-    }
 
     public void statement() throws SQLException {
         Query query = new Query();
@@ -73,6 +64,18 @@ public class SecondController {
         tableViewStatementPageTwo.setItems(list);
     }
 
+    @FXML
+    protected void onReturnbtn_Click(ActionEvent event) throws IOException {
+        try {
+            root = FXMLLoader.load(getClass().getResource("hello-view.fxml"));
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+        }
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
 
 
 }
