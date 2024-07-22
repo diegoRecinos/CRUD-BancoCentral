@@ -4,7 +4,9 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -13,11 +15,13 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 
+import java.io.IOException;
 import java.sql.*;
 
 import java.net.URL;
 import java.time.LocalDate;
 
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 import javafx.scene.control.DatePicker;
@@ -207,7 +211,20 @@ public class BCNController implements Initializable {
     @FXML
     private TableColumn<Student, String> colLastName;
 
+    @FXML
+    private void handleButtonAction(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("second.fxml")));
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
+        stage.setTitle("BCN-page-two");
+        stage.setMinHeight(700);
+        stage.setMinWidth(1400);
+        stage.setResizable(true);
+        stage.setScene(scene);
+        stage.show();
+
+    }
 
 
     @Override
@@ -225,19 +242,6 @@ public class BCNController implements Initializable {
 
     }
 
-
-//    @FXML
-//    private void showStudents()
-//    {
-//        Query query = new Query();
-//        ObservableList<Student> list = query.getStudentList();
-//        columnID.setCellValueFactory(new PropertyValueFactory<>("id"));
-//        colFirstName.setCellValueFactory(new PropertyValueFactory<>("firstName"));
-//        colMiddleName.setCellValueFactory(new PropertyValueFactory<>("middleName"));
-//        colLastName.setCellValueFactory(new PropertyValueFactory<>("lastName"));
-//        tableView.setItems(list);
-//    }
-    
     @FXML
     private void showClientes()
     {
@@ -313,53 +317,6 @@ public class BCNController implements Initializable {
         }
     }
     
-
-    @FXML
-    private void addStudentFunction()
-    {
-//        Student student = new Student(Integer.parseInt(fieldStudentID.getText()),fieldFirstName.getText(), fieldMiddleName.getText(),fieldLastName.getText());
-//        Query query = new Query();
-//        query.addStudent(student);
-//        showStudents();
-
-    }
-    @FXML
-    private void deleteStudent()
-    {
-//        int studentId = Integer.parseInt(fieldStudentID.getText());
-//        Query query = new Query();
-//        query.deleteStudent(studentId);
-//        showStudents();
-
-    }
-
-    @FXML
-    private void updateStudentFunction()
-    {
-//        Student student = new Student(Integer.parseInt(fieldStudentID.getText()),fieldFirstName.getText(), fieldMiddleName.getText(),fieldLastName.getText());
-//        Query query = new Query();
-//        query.updateStudent(student);
-//        showStudents();
-    }
-
-    @FXML
-    private void mouseClicked(MouseEvent e)
-    {
-//        try {
-//            Student student = (Student) tableView.getSelectionModel().getSelectedItem();
-//            student = new Student(student.getId(), student.getFirstName(), student.getMiddleName(), student.getLastName());
-//            this.student = student;
-//            fieldFirstName.setText(student.getFirstName());
-//            fieldMiddleName.setText(student.getMiddleName());
-//            fieldLastName.setText(student.getLastName());
-//            fieldLastName.setText(student.getLastName());
-//            fieldStudentID.setText (String.valueOf (student.getId()) );
-//
-//        } catch (Exception ex) {
-//            ex.printStackTrace();
-//        }
-
-    }
 
     @FXML
     private void addClienteFunction()

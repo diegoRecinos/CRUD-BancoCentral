@@ -30,8 +30,6 @@ public class BCNApplication extends Application {
 
 
     public static void main(String[] args) throws SQLException {
-
         launch();
-
     }
 }
