@@ -1,6 +1,8 @@
 module group.crudgui {
     requires javafx.controls;
     requires javafx.fxml;
+    requires javafx.media;
+    requires javafx.graphics;
 
     requires org.controlsfx.controls;
     requires java.sql;
