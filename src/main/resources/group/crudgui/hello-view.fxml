@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.VBox?>
 
 <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="687.0" prefWidth="1400.0" spacing="20.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="group.crudgui.BCNController">
-    <AnchorPane prefHeight="676.0" prefWidth="1415.0">
+    <AnchorPane prefHeight="676.0" prefWidth="1376.0">
       <VBox layoutX="53.0" layoutY="32.0" prefHeight="142.0" prefWidth="170.0">
          <children>
                <TextField fx:id="fieldClienteName" />
@@ -140,11 +140,6 @@
                <Insets top="2.0" />
             </VBox.margin>
          </TextField>
-         <TextField>
-            <VBox.margin>
-               <Insets top="2.0" />
-            </VBox.margin>
-         </TextField>
         </VBox>
       <Label layoutX="592.0" layoutY="10.0" text="Transaccion" />
       <VBox layoutX="471.0" layoutY="24.0" prefHeight="164.0" prefWidth="67.0">
@@ -172,11 +167,6 @@
             <Label text="ID_Cliente">
                <VBox.margin>
                   <Insets top="8.0" />
-               </VBox.margin>
-            </Label>
-            <Label text="No tarjeta">
-               <VBox.margin>
-                  <Insets top="10.0" />
                </VBox.margin>
             </Label>
          </children>
@@ -316,25 +306,14 @@
             <TextField fx:id="fieldTransaccionID" prefHeight="26.0" prefWidth="182.0" />
          </children>
       </HBox>
-      <Button fx:id="btnReporteA" layoutX="806.0" layoutY="100.0" mnemonicParsing="false" onAction="#reporteA" text="ReporteA" />
-      <Button fx:id="btnReporteB" layoutX="802.0" layoutY="338.0" mnemonicParsing="false" onAction="#reporteB" prefHeight="26.0" prefWidth="66.0" text="ReporteB" />
-      <Button fx:id="btnReporteC" layoutX="802.0" layoutY="476.0" mnemonicParsing="false" onAction="#reporteC" prefHeight="26.0" prefWidth="66.0" text="ReporteC" />
-      <Button fx:id="btnReporteD" layoutX="875.0" layoutY="600.0" mnemonicParsing="false" onAction="#reporteD" prefHeight="26.0" prefWidth="70.0" text="ReporteD" />
-      <DatePicker fx:id="dtPickerInicio" layoutX="735.0" layoutY="61.0" prefHeight="26.0" prefWidth="87.0" />
-      <Label layoutX="812.0" layoutY="10.0" text="Reportes" />
-      <DatePicker fx:id="dtPickerFin" layoutX="856.0" layoutY="61.0" prefHeight="26.0" prefWidth="81.0" />
-      <Label layoutX="765.0" layoutY="32.0" text="Inicio" />
-      <Label layoutX="880.0" layoutY="32.0" text="Fin" />
-      <TextField fx:id="fieldReporteAIDCliente" layoutX="764.0" layoutY="148.0" />
-      <Label layoutX="812.0" layoutY="128.0" text="ID_Cliente" />
-      <DatePicker fx:id="dtPickerMesReporteB" layoutX="799.0" layoutY="257.0" prefHeight="26.0" prefWidth="82.0" />
-      <Label layoutX="830.0" layoutY="241.0" text="Mes" />
-      <TextField fx:id="fieldReporteBID_Cliente" layoutX="764.0" layoutY="308.0" />
-      <Label layoutX="812.0" layoutY="288.0" text="ID_Cliente" />
-      <TextField fx:id="fieldReporteCIDCliente" layoutX="761.0" layoutY="443.0" />
-      <Label layoutX="809.0" layoutY="424.0" text="ID_Cliente" />
-      <VBox layoutX="745.0" layoutY="587.0" prefHeight="53.0" prefWidth="122.0">
+      <Label layoutX="814.0" layoutY="9.0" text="Reportes" />
+      <VBox layoutX="746.0" layoutY="556.0" prefHeight="101.0" prefWidth="184.0">
          <children>
+            <Label text="Clientes por facilitador tarjetas">
+               <VBox.margin>
+                  <Insets bottom="5.0" />
+               </VBox.margin>
+            </Label>
             <RadioButton fx:id="rdbtnReporteDVisa" mnemonicParsing="false" prefHeight="18.0" prefWidth="54.0" text="Visa">
                <toggleGroup>
                   <ToggleGroup fx:id="FacilitadorReporteD" />
@@ -342,9 +321,92 @@
             </RadioButton>
             <RadioButton fx:id="rdbtnReporteDMasterCard" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="18.0" prefWidth="87.0" text="MasterCard" toggleGroup="$FacilitadorReporteD" />
             <RadioButton fx:id="rdbtnReporteDAmericanExpress" mnemonicParsing="false" prefHeight="18.0" prefWidth="117.0" text="American Express" toggleGroup="$FacilitadorReporteD" />
+            <Button fx:id="btnReporteD" mnemonicParsing="false" onAction="#reporteD" prefHeight="26.0" prefWidth="70.0" text="Reporte D">
+               <VBox.margin>
+                  <Insets top="5.0" />
+               </VBox.margin>
+            </Button>
          </children>
       </VBox>
-      <Button fx:id="btnPageII" layoutX="976.0" layoutY="15.0" mnemonicParsing="false" onAction="#handleButtonAction" text="PAGE II" />
+      <Button fx:id="btnPageII" layoutX="1150.0" layoutY="22.0" mnemonicParsing="false" onAction="#handleButtonAction" text="PAGE II" />
       <VBox layoutX="1056.0" layoutY="586.0" prefHeight="53.0" prefWidth="122.0" />
+      <VBox layoutX="746.0" layoutY="421.0" prefHeight="91.0" prefWidth="150.0">
+         <children>
+            <Label text="Tarjetas asociadas a cliente">
+               <VBox.margin>
+                  <Insets bottom="5.0" />
+               </VBox.margin>
+            </Label>
+            <Label alignment="CENTER" prefHeight="18.0" prefWidth="175.0" text="ID_Cliente" />
+            <TextField fx:id="fieldReporteCIDCliente" prefHeight="26.0" prefWidth="140.0" />
+            <Button fx:id="btnReporteC" mnemonicParsing="false" onAction="#reporteC" prefHeight="26.0" prefWidth="70.0" text="Reporte C">
+               <VBox.margin>
+                  <Insets top="5.0" />
+               </VBox.margin>
+            </Button>
+         </children>
+      </VBox>
+      <VBox layoutX="749.0" layoutY="230.0" prefHeight="144.0" prefWidth="143.0" AnchorPane.leftAnchor="749.0">
+         <children>
+            <Label text="Gastos por mes de cliente">
+               <VBox.margin>
+                  <Insets bottom="5.0" />
+               </VBox.margin>
+            </Label>
+            <Label alignment="CENTER" prefHeight="18.0" prefWidth="151.0" text="Mes" />
+            <DatePicker fx:id="dtPickerMesReporteB" prefHeight="26.0" prefWidth="147.0" />
+            <Label alignment="CENTER" prefHeight="18.0" prefWidth="146.0" text="ID_Cliente">
+               <VBox.margin>
+                  <Insets top="5.0" />
+               </VBox.margin>
+            </Label>
+            <TextField fx:id="fieldReporteBID_Cliente" prefHeight="26.0" prefWidth="109.0">
+               <VBox.margin>
+                  <Insets top="5.0" />
+               </VBox.margin>
+            </TextField>
+            <Button fx:id="btnReporteB" mnemonicParsing="false" onAction="#reporteB" prefHeight="26.0" prefWidth="72.0" text="Reporte B">
+               <VBox.margin>
+                  <Insets top="5.0" />
+               </VBox.margin>
+            </Button>
+         </children>
+      </VBox>
+      <VBox layoutX="749.0" layoutY="59.0" prefHeight="154.0" prefWidth="228.0">
+         <children>
+            <HBox prefHeight="52.0" prefWidth="212.0">
+               <children>
+                  <VBox prefHeight="52.0" prefWidth="121.0">
+                     <children>
+                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="100.0" text="Inicio" />
+                        <DatePicker fx:id="dtPickerInicio" prefHeight="26.0" prefWidth="110.0" />
+                     </children>
+                     <HBox.margin>
+                        <Insets right="5.0" />
+                     </HBox.margin>
+                  </VBox>
+                  <VBox prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="112.0" text="Fin" />
+                        <DatePicker fx:id="dtPickerFin" prefHeight="26.0" prefWidth="103.0" />
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+            <Button fx:id="btnReporteA" alignment="CENTER" mnemonicParsing="false" onAction="#reporteA" prefHeight="21.0" prefWidth="94.0" text="Reporte A">
+               <VBox.margin>
+                  <Insets left="65.0" />
+               </VBox.margin>
+            </Button>
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="243.0" text="ID_Cliente">
+               <VBox.margin>
+                  <Insets top="5.0" />
+               </VBox.margin>
+            </Label>
+            <TextField fx:id="fieldReporteAIDCliente" />
+         </children>
+      </VBox>
+      <Label layoutX="747.0" layoutY="35.0" prefHeight="18.0" prefWidth="258.0" text="Transacciones de cliente por periodo de tiempo" />
+      <TextField fx:id="fieldInformation" layoutX="1010.0" layoutY="67.0" prefHeight="586.0" prefWidth="335.0" />
     </AnchorPane>
 </VBox>

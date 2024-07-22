@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+
+<AnchorPane prefHeight="624.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="group.crudgui.ReportesController">
+   <children>
+      <VBox layoutX="62.0" layoutY="505.0" prefHeight="53.0" prefWidth="122.0">
+         <children>
+            <RadioButton fx:id="rdbtnReporteDVisa" mnemonicParsing="false" prefHeight="18.0" prefWidth="54.0" text="Visa">
+               <toggleGroup>
+                  <ToggleGroup fx:id="FacilitadorReporteD" />
+               </toggleGroup>
+            </RadioButton>
+            <RadioButton fx:id="rdbtnReporteDMasterCard" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="18.0" prefWidth="87.0" text="MasterCard" toggleGroup="$FacilitadorReporteD" />
+            <RadioButton fx:id="rdbtnReporteDAmericanExpress" mnemonicParsing="false" prefHeight="18.0" prefWidth="117.0" text="American Express" toggleGroup="$FacilitadorReporteD" />
+            <Button fx:id="btnReporteD" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#reporteD" prefHeight="26.0" prefWidth="82.0" text="ReporteD">
+               <VBox.margin>
+                  <Insets left="20.0" top="10.0" />
+               </VBox.margin>
+            </Button>
+         </children>
+      </VBox>
+      <VBox layoutX="62.0" layoutY="367.0" prefHeight="83.0" prefWidth="100.0">
+         <children>
+            <Label text="ID_Cliente" />
+            <TextField fx:id="fieldReporteCIDCliente" />
+            <Button fx:id="btnReporteC" mnemonicParsing="false" onAction="#reporteC" prefHeight="26.0" prefWidth="66.0" text="ReporteC" />
+         </children>
+      </VBox>
+      <VBox layoutX="62.0" layoutY="219.0" prefHeight="130.0" prefWidth="100.0">
+         <children>
+            <Label text="Mes" />
+            <DatePicker fx:id="dtPickerMesReporteB" prefHeight="26.0" prefWidth="82.0" />
+            <Label text="ID_Cliente" />
+            <TextField fx:id="fieldReporteBID_Cliente" />
+            <Button fx:id="btnReporteB" mnemonicParsing="false" onAction="#reporteB" prefHeight="26.0" prefWidth="66.0" text="ReporteB" />
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

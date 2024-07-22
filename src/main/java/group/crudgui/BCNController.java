@@ -153,6 +153,7 @@ public class BCNController implements Initializable {
     public ToggleGroup FacilitadorReporteD1;
     public RadioButton rdbtnStatementMasterCard2;
     public RadioButton rdbtnStatementAmericanExpress3;
+    public TextField fieldInformation;
     @FXML
     private Label welcomeText;
     private Tarjeta tarjeta;
@@ -221,7 +222,7 @@ public class BCNController implements Initializable {
         stage.setMinHeight(700);
         stage.setMinWidth(1000);
 
-        stage.setWidth(1000);
+        stage.setWidth(1400);
         stage.setHeight(700);
 
         stage.setResizable(true);
@@ -303,10 +304,7 @@ public class BCNController implements Initializable {
 
         tableViewTarjeta.setItems(list);
     }
-
-    public void cambiarEscena(ActionEvent event) {
-    }
-
+    
     public class CensurarNumeroTarjetaCell extends TableCell<Tarjeta, String> {
         @Override
         protected void updateItem(String item, boolean empty) {
