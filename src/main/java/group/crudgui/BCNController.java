@@ -219,7 +219,11 @@ public class BCNController implements Initializable {
 
         stage.setTitle("BCN-page-two");
         stage.setMinHeight(700);
-        stage.setMinWidth(1400);
+        stage.setMinWidth(1000);
+
+        stage.setWidth(1000);
+        stage.setHeight(700);
+
         stage.setResizable(true);
         stage.setScene(scene);
         stage.show();
@@ -234,11 +238,11 @@ public class BCNController implements Initializable {
         showTarjetas();
         showTransacciones();
 
-        colIDTableViewStatement.setCellValueFactory(new PropertyValueFactory<>("id"));
-        colNOMBRETableViewStatement.setCellValueFactory(new PropertyValueFactory<>("nombre"));
-        colTarjetaNumero.setCellValueFactory(new PropertyValueFactory<>("numero_tarjeta"));
-        colDESCRIPTableViewStatement.setCellValueFactory(new PropertyValueFactory<>("descripcion"));
-        colFacilitadorTableViewStatement.setCellValueFactory(new PropertyValueFactory<>("facilitador"));
+//        colIDTableViewStatement.setCellValueFactory(new PropertyValueFactory<>("id"));
+//        colNOMBRETableViewStatement.setCellValueFactory(new PropertyValueFactory<>("nombre"));
+//        colTarjetaNumero.setCellValueFactory(new PropertyValueFactory<>("numero_tarjeta"));
+//        colDESCRIPTableViewStatement.setCellValueFactory(new PropertyValueFactory<>("descripcion"));
+//        colFacilitadorTableViewStatement.setCellValueFactory(new PropertyValueFactory<>("facilitador"));
 
     }
 
@@ -605,30 +609,30 @@ public class BCNController implements Initializable {
     }
 
 
-    public void statement() throws SQLException {
-        Query query = new Query();
-
-        if (rdbtnStatementVisa1.isSelected())
-        {
-            fieldStatementID.setText("1");
-        } else if (rdbtnStatementMasterCard2.isSelected()) {
-            fieldStatementID.setText("2");
-        } else if (rdbtnStatementAmericanExpress3.isSelected()) {
-            fieldStatementID.setText("3");
-        }
-
-        query.generateStatement(Integer.parseInt(fieldStatementID.getText()));
-
-
-        ObservableList<StatementRecord> list = query.getList();
-
-        colIDTableViewStatement.setCellValueFactory(new PropertyValueFactory<>("id"));
-        colNOMBRETableViewStatement.setCellValueFactory(new PropertyValueFactory<>("nombre"));
-        colTARJETANOTableViewStatement.setCellValueFactory(new PropertyValueFactory<>("numeroTarjeta"));
-        colDESCRIPTableViewStatement.setCellValueFactory(new PropertyValueFactory<>("descripcion"));
-        colFacilitadorTableViewStatement.setCellValueFactory(new PropertyValueFactory<>("facilitador"));
-
-        TableViewStatement.setItems(list);
-    }
+//    public void statement() throws SQLException {
+//        Query query = new Query();
+//
+//        if (rdbtnStatementVisa1.isSelected())
+//        {
+//            fieldStatementID.setText("1");
+//        } else if (rdbtnStatementMasterCard2.isSelected()) {
+//            fieldStatementID.setText("2");
+//        } else if (rdbtnStatementAmericanExpress3.isSelected()) {
+//            fieldStatementID.setText("3");
+//        }
+//
+//        query.generateStatement(Integer.parseInt(fieldStatementID.getText()));
+//
+//
+//        ObservableList<StatementRecord> list = query.getList();
+//
+//        colIDTableViewStatement.setCellValueFactory(new PropertyValueFactory<>("id"));
+//        colNOMBRETableViewStatement.setCellValueFactory(new PropertyValueFactory<>("nombre"));
+//        colTARJETANOTableViewStatement.setCellValueFactory(new PropertyValueFactory<>("numeroTarjeta"));
+//        colDESCRIPTableViewStatement.setCellValueFactory(new PropertyValueFactory<>("descripcion"));
+//        colFacilitadorTableViewStatement.setCellValueFactory(new PropertyValueFactory<>("facilitador"));
+//
+//        TableViewStatement.setItems(list);
+//    }
 
 }

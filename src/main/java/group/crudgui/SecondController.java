@@ -73,6 +73,14 @@ public class SecondController {
         }
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
+        stage.setTitle("BCN");
+//        stage.setMinWidth(900);
+//        stage.setMinHeight(700);
+        stage.setMinWidth(1200);
+        stage.setMinHeight(700);
+        stage.setWidth(1200);
+        stage.setHeight(700);
+
         stage.setScene(scene);
         stage.show();
     }

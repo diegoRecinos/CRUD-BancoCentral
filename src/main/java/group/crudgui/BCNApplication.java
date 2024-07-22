@@ -20,8 +20,9 @@ public class BCNApplication extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(BCNApplication.class.getResource("hello-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 320, 240);
         stage.setTitle("BCN");
-        stage.setMinWidth(1400);
+        stage.setMinWidth(1200);
         stage.setMinHeight(700);
+
         stage.setResizable(true);
         stage.setScene(scene);
         stage.show();
